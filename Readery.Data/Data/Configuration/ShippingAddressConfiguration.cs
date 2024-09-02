@@ -1,0 +1,17 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Readery.Data.Data.Models;
+
+namespace Readery.Domain.Data.Configuration
+{
+    internal class ShippingAddressConfiguration : IEntityTypeConfiguration<ShippingAddress>
+    {
+        public void Configure(EntityTypeBuilder<ShippingAddress> builder)
+        {
+            builder
+                .HasOne(sa => sa.User)
+                .WithOne(u => u.ShippingAddress)
+                .HasForeignKey<ApplicationUser>(u => u.ShippingAddressId);
+        }
+    }
+}
