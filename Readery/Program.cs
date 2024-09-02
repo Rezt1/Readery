@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Readery.Data;
-using Readery.Data.Data.Models;
+using Readery.Domain.Data;
+using Readery.Domain.Data.Models;
 
 namespace Readery
 {
@@ -26,6 +26,7 @@ namespace Readery
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
             else

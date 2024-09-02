@@ -1,0 +1,22 @@
+﻿@model List<BasicBookViewModel>
+
+<div class="row justify-content-evenly">
+	@foreach(var book in Model)
+	{
+        <div class="col col-2">
+            <a asp-area="" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" style="text-decoration: none; color: inherit">
+                <div class="card">
+                    <img src="~/@book.ImagePath" class="card-img-top" alt="Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text">Language: @book.Language</p>
+                        <p class="card-text">Price: €@book.Price</p>
+                        <p class="card-text">
+                            <small class="text-body-secondary">Author: @book.AuthorName</small>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+	}
+</div>

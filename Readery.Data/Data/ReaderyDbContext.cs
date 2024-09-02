@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Readery.Data.Data.Models;
+using Readery.Domain.Data.Models;
 using Readery.Domain.Data.Configuration;
 
-namespace Readery.Data
+namespace Readery.Domain.Data
 {
     public class ReaderyDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {

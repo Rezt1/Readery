@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Readery.Data;
+using Readery.Domain.Data;
 using Readery.Models;
 using System.Diagnostics;
 
@@ -19,7 +19,6 @@ namespace Readery.Controllers
 
         public IActionResult Index()
         {
-            Console.WriteLine(context.Books.Include(b => b.Author).First().Author.FirstName);
             return View();
         }
 

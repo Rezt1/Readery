@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Readery.Data.Data.Models;
+using Readery.Domain.Data.Models;
 
 namespace Readery.Domain.Data.Configuration
 {
@@ -15,6 +15,8 @@ namespace Readery.Domain.Data.Configuration
 
         internal Country Country3 { get; set; } = null!;
 
+        internal Country Country4 { get; set; } = null!;
+
         internal Address AuthorAddress { get; set; } = null!;
 
         internal Address PublisherAddress { get; set; } = null!;
@@ -28,6 +30,8 @@ namespace Readery.Domain.Data.Configuration
         internal Book Book2 { get; set; } = null!;
 
         internal Book Book3 { get; set; } = null!;
+
+        internal Book Book4 { get; set; } = null!;
 
         public DataSeeder()
         {
@@ -88,6 +92,12 @@ namespace Readery.Domain.Data.Configuration
                 Id = 3,
                 Name = "France"
             };
+
+            Country4 = new Country()
+            {
+                Id = 4,
+                Name = "Japan"
+            };
         }
 
         private void SeedAddresses()
@@ -95,17 +105,17 @@ namespace Readery.Domain.Data.Configuration
             AuthorAddress = new Address()
             {
                 Id = 1,
-                Street = "Geo Milev 15A",
-                City = "Blagoevgrad",
-                CountryId = Country2.Id,
+                Street = "Dragon Path 5",
+                City = "Tokyo",
+                CountryId = Country4.Id,
             };
 
             PublisherAddress = new Address()
             {
                 Id = 2,
-                Street = "Power 11A",
-                City = "Frankfurt",
-                CountryId = Country1.Id,
+                Street = "Snake Street 18",
+                City = "Tokyo",
+                CountryId = Country4.Id,
             };
         }
 
@@ -114,8 +124,8 @@ namespace Readery.Domain.Data.Configuration
             Author = new Author()
             {
                 Id = 1,
-                FirstName = "Petur",
-                LastName = "Georgiev",
+                FirstName = "Syougo",
+                LastName = "Kinugasa",
                 BirthDate = new DateTime(1990, 9, 25),
                 AddressId = AuthorAddress.Id,
                 UserId = AuthorUser.Id
@@ -130,8 +140,9 @@ namespace Readery.Domain.Data.Configuration
             Publisher = new Publisher()
             {
                 Id = 1,
+                Name = "Seven Seas",
                 Email = "publisher@gmail.com",
-                PhoneNumber = "+49 1234 5678",
+                PhoneNumber = "+81 1234 5678",
                 AddressId = PublisherAddress.Id,
             };
 
@@ -143,10 +154,10 @@ namespace Readery.Domain.Data.Configuration
             Book1 = new Book()
             {
                 Id = 1,
-                Title = "Bulgarian Book1",
+                Title = "Classroom of the elite (Light Novel) Vol. 1",
                 Description = "The main character does some pretty amazing stuff and is super amazing",
-                ImagePath = "images/books/book1.webp",
-                Language  = "bg",
+                ImagePath = "images/books/cote1.jpg",
+                Language  = "en",
                 PagesCount = 301,
                 Price = 30.00m,
                 IsRemoved = false,
@@ -159,10 +170,10 @@ namespace Readery.Domain.Data.Configuration
             Book2 = new Book()
             {
                 Id = 2,
-                Title = "Bulgarian Book2",
+                Title = "Classroom of the elite (Light Novel) Vol. 3",
                 Description = "The main character does some pretty bad stuff and is super evil",
-                ImagePath = "images/books/book2.webp",
-                Language = "bg",
+                ImagePath = "images/books/cote3.jpg",
+                Language = "en",
                 PagesCount = 280,
                 Price = 27.00m,
                 IsRemoved = false,
@@ -175,12 +186,28 @@ namespace Readery.Domain.Data.Configuration
             Book3 = new Book()
             {
                 Id = 3,
-                Title = "Bulgarian Book3",
+                Title = "Classroom of the elite (Light Novel) Vol. 6",
                 Description = "The main character does some pretty shady stuff and is super sneaky",
-                ImagePath = "images/books/book3.webp",
-                Language = "bg",
+                ImagePath = "images/books/cote6.jpg",
+                Language = "en",
                 PagesCount = 445,
                 Price = 35.00m,
+                IsRemoved = false,
+                WrittenOn = new DateTime(2008, 6, 16),
+                AddedOn = DateTime.Now,
+                AuthorId = Author.Id,
+                PublisherId = Publisher.Id,
+            };
+
+            Book4 = new Book()
+            {
+                Id = 4,
+                Title = "Classroom of the elite (Light Novel) Vol. 8",
+                Description = "The main character does some pretty embarassing stuff and is super unbothered",
+                ImagePath = "images/books/cote8.jpg",
+                Language = "en",
+                PagesCount = 415,
+                Price = 35.50m,
                 IsRemoved = false,
                 WrittenOn = new DateTime(2008, 6, 16),
                 AddedOn = DateTime.Now,

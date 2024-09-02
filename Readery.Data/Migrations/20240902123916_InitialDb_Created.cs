@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Readery.Data.Migrations
+namespace Readery.Domain.Migrations
 {
-    public partial class Initial_DbStructure_Created : Migration
+    public partial class InitialDb_Created : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,7 @@ namespace Readery.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false)
@@ -318,6 +319,57 @@ namespace Readery.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Authors",
+                columns: new[] { "Id", "AddressId", "BirthDate", "FirstName", "LastName", "UserId" },
+                values: new object[] { 1, 1, new DateTime(1990, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Syougo", "Kinugasa", new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1") });
+
+            migrationBuilder.InsertData(
+                table: "Countries",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Germany" },
+                    { 2, "Bulgaria" },
+                    { 3, "France" },
+                    { 4, "Japan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Publishers",
+                columns: new[] { "Id", "AddressId", "Email", "Name", "PhoneNumber" },
+                values: new object[] { 1, 2, "publisher@gmail.com", "Seven Seas", "+81 1234 5678" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccessFailedCount", "AuthorId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShippingAddressId", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("c1358e18-acd5-4f2c-bd21-778e04d039b1"), 0, null, "1d1a6c51-4044-4a04-b523-5b270b1d22df", "common1@gmail.com", false, false, null, "COMMON1@GMAIL.COM", "COMMON", "AQAAAAEAACcQAAAAEExsaQosBy5a81tSlH83DSVTz5h2RxSYSedoGf3lvP3t206NgNZS47mC4KchdpHtxA==", null, false, "86a53d74-7a1f-4758-ab9f-c1724ec3002d", null, false, "Common" });
+
+            migrationBuilder.InsertData(
+                table: "Addresses",
+                columns: new[] { "Id", "AuthorId", "City", "CountryId", "PublisherId", "Street" },
+                values: new object[,]
+                {
+                    { 1, 1, "Tokyo", 4, null, "Dragon Path 5" },
+                    { 2, null, "Tokyo", 4, 1, "Snake Street 18" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "AddedOn", "AuthorId", "Description", "ImagePath", "IsRemoved", "Language", "PagesCount", "Price", "PublisherId", "Title", "UpdatedOn", "WrittenOn" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(3985), 1, "The main character does some pretty amazing stuff and is super amazing", "images/books/cote1.jpg", false, "en", 301, 30.00m, 1, "Classroom of the elite (Light Novel) Vol. 1", null, new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4014), 1, "The main character does some pretty bad stuff and is super evil", "images/books/cote3.jpg", false, "en", 280, 27.00m, 1, "Classroom of the elite (Light Novel) Vol. 3", null, new DateTime(2017, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4017), 1, "The main character does some pretty shady stuff and is super sneaky", "images/books/cote6.jpg", false, "en", 445, 35.00m, 1, "Classroom of the elite (Light Novel) Vol. 6", null, new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4034), 1, "The main character does some pretty embarassing stuff and is super unbothered", "images/books/cote8.jpg", false, "en", 415, 35.50m, 1, "Classroom of the elite (Light Novel) Vol. 8", null, new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccessFailedCount", "AuthorId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShippingAddressId", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"), 0, 1, "f3faf84e-336a-4072-8fb8-2da7566ac5be", "author1@gmail.com", false, false, null, "AUTHOR@GMAIL.COM", "AUTHOR", "AQAAAAEAACcQAAAAEKhdPCfSy1mggNWB4LBWedTrKCyyOwEiLLjbcqWwNtjLxGVbS8VS6eBr2y4oMt3hAw==", null, false, "9aaf540b-762b-4da6-8f19-e472759f193b", null, false, "Author" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_AuthorId",

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Readery.Data.Data.Models;
+using Readery.Domain.Data.Models;
 
 namespace Readery.Domain.Data.Configuration
 {
@@ -15,7 +15,7 @@ namespace Readery.Domain.Data.Configuration
                 .OnDelete(DeleteBehavior.NoAction);
 
             var seeder = new DataSeeder();
-            builder.HasData(new[] { seeder.Book1, seeder.Book2, seeder.Book3 });
+            builder.HasData(new[] { seeder.Book1, seeder.Book2, seeder.Book3, seeder.Book4 });
         }
     }
 }
