@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Readery.Data.Data.Models
+namespace Readery.Domain.Data.Models
 {
     public class ShippingAddress
     {

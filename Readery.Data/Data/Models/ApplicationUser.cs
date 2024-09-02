@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Readery.Data.Data.Models
+namespace Readery.Domain.Data.Models
 {
     public class ApplicationUser : IdentityUser<Guid>
     {

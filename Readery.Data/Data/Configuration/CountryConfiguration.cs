@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Readery.Data.Data.Models;
+using Readery.Domain.Data.Models;
 
 namespace Readery.Domain.Data.Configuration
 {
@@ -9,7 +9,7 @@ namespace Readery.Domain.Data.Configuration
         public void Configure(EntityTypeBuilder<Country> builder)
         {
             var seeder = new DataSeeder();
-            builder.HasData(new[] { seeder.Country1, seeder.Country2, seeder.Country3 });
+            builder.HasData(new[] { seeder.Country1, seeder.Country2, seeder.Country3, seeder.Country4 });
         }
     }
 }

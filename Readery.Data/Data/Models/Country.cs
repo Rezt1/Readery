@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Readery.Data.Data.Models
+namespace Readery.Domain.Data.Models
 {
     public class Country
     {

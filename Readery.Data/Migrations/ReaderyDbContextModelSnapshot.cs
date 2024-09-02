@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Readery.Data;
+using Readery.Domain.Data;
 
 #nullable disable
 
-namespace Readery.Data.Migrations
+namespace Readery.Domain.Migrations
 {
     [DbContext(typeof(ReaderyDbContext))]
     partial class ReaderyDbContextModelSnapshot : ModelSnapshot
@@ -117,7 +117,7 @@ namespace Readery.Data.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Address", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,21 +163,21 @@ namespace Readery.Data.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
-                            City = "Blagoevgrad",
-                            CountryId = 2,
-                            Street = "Geo Milev 15A"
+                            City = "Tokyo",
+                            CountryId = 4,
+                            Street = "Dragon Path 5"
                         },
                         new
                         {
                             Id = 2,
-                            City = "Frankfurt",
-                            CountryId = 1,
+                            City = "Tokyo",
+                            CountryId = 4,
                             PublisherId = 1,
-                            Street = "Power 11A"
+                            Street = "Snake Street 18"
                         });
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ApplicationRole", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -197,7 +197,7 @@ namespace Readery.Data.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,17 +266,17 @@ namespace Readery.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cfa97e8d-d92c-487b-91b7-6c3e5e78b571"),
+                            Id = new Guid("c1358e18-acd5-4f2c-bd21-778e04d039b1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8d1f2829-e133-4efb-9a12-b068f31a1be5",
+                            ConcurrencyStamp = "1d1a6c51-4044-4a04-b523-5b270b1d22df",
                             Email = "common1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "COMMON1@GMAIL.COM",
                             NormalizedUserName = "COMMON",
-                            PasswordHash = "AQAAAAEAACcQAAAAELZHGoZxyGZ70pQp+Ph/Y07DEQUO/w5Nnh01OETEKfAAEq2cnaC6QJkCPUHpIc+R+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEExsaQosBy5a81tSlH83DSVTz5h2RxSYSedoGf3lvP3t206NgNZS47mC4KchdpHtxA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "38c0893c-364f-4dcb-af36-fa76da7a99b5",
+                            SecurityStamp = "86a53d74-7a1f-4758-ab9f-c1724ec3002d",
                             TwoFactorEnabled = false,
                             UserName = "Common"
                         },
@@ -285,21 +285,21 @@ namespace Readery.Data.Migrations
                             Id = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
                             AccessFailedCount = 0,
                             AuthorId = 1,
-                            ConcurrencyStamp = "672f6fa9-51a3-4038-bd39-75296926d650",
+                            ConcurrencyStamp = "f3faf84e-336a-4072-8fb8-2da7566ac5be",
                             Email = "author1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@GMAIL.COM",
                             NormalizedUserName = "AUTHOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAECPoJ/8UGPKTbx1nMONY2g7qcI7U6tRUd85Vg5IfpxGwVS5XO5sLP3CyXvyX8sxQog==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKhdPCfSy1mggNWB4LBWedTrKCyyOwEiLLjbcqWwNtjLxGVbS8VS6eBr2y4oMt3hAw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a580162f-1498-4a10-b228-9479271cb79d",
+                            SecurityStamp = "9aaf540b-762b-4da6-8f19-e472759f193b",
                             TwoFactorEnabled = false,
                             UserName = "Author"
                         });
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Author", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -336,13 +336,13 @@ namespace Readery.Data.Migrations
                             Id = 1,
                             AddressId = 1,
                             BirthDate = new DateTime(1990, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Petur",
-                            LastName = "Georgiev",
+                            FirstName = "Syougo",
+                            LastName = "Kinugasa",
                             UserId = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1")
                         });
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Book", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -406,51 +406,66 @@ namespace Readery.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2024, 8, 27, 19, 3, 23, 713, DateTimeKind.Local).AddTicks(6386),
+                            AddedOn = new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(3985),
                             AuthorId = 1,
                             Description = "The main character does some pretty amazing stuff and is super amazing",
-                            ImagePath = "images/books/book1.webp",
+                            ImagePath = "images/books/cote1.jpg",
                             IsRemoved = false,
-                            Language = "bg",
+                            Language = "en",
                             PagesCount = 301,
                             Price = 30.00m,
                             PublisherId = 1,
-                            Title = "Bulgarian Book1",
+                            Title = "Classroom of the elite (Light Novel) Vol. 1",
                             WrittenOn = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2024, 8, 27, 19, 3, 23, 713, DateTimeKind.Local).AddTicks(6420),
+                            AddedOn = new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4014),
                             AuthorId = 1,
                             Description = "The main character does some pretty bad stuff and is super evil",
-                            ImagePath = "images/books/book2.webp",
+                            ImagePath = "images/books/cote3.jpg",
                             IsRemoved = false,
-                            Language = "bg",
+                            Language = "en",
                             PagesCount = 280,
                             Price = 27.00m,
                             PublisherId = 1,
-                            Title = "Bulgarian Book2",
+                            Title = "Classroom of the elite (Light Novel) Vol. 3",
                             WrittenOn = new DateTime(2017, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2024, 8, 27, 19, 3, 23, 713, DateTimeKind.Local).AddTicks(6424),
+                            AddedOn = new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4017),
                             AuthorId = 1,
                             Description = "The main character does some pretty shady stuff and is super sneaky",
-                            ImagePath = "images/books/book3.webp",
+                            ImagePath = "images/books/cote6.jpg",
                             IsRemoved = false,
-                            Language = "bg",
+                            Language = "en",
                             PagesCount = 445,
                             Price = 35.00m,
                             PublisherId = 1,
-                            Title = "Bulgarian Book3",
+                            Title = "Classroom of the elite (Light Novel) Vol. 6",
+                            WrittenOn = new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddedOn = new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4034),
+                            AuthorId = 1,
+                            Description = "The main character does some pretty embarassing stuff and is super unbothered",
+                            ImagePath = "images/books/cote8.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 415,
+                            Price = 35.50m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite (Light Novel) Vol. 8",
                             WrittenOn = new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Country", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -482,10 +497,15 @@ namespace Readery.Data.Migrations
                         {
                             Id = 3,
                             Name = "France"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Japan"
                         });
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Order", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -511,7 +531,7 @@ namespace Readery.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.OrderBook", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.OrderBook", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -540,7 +560,7 @@ namespace Readery.Data.Migrations
                     b.ToTable("OrderBooks");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Publisher", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -555,6 +575,11 @@ namespace Readery.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -571,11 +596,12 @@ namespace Readery.Data.Migrations
                             Id = 1,
                             AddressId = 2,
                             Email = "publisher@gmail.com",
-                            PhoneNumber = "+49 1234 5678"
+                            Name = "Seven Seas",
+                            PhoneNumber = "+81 1234 5678"
                         });
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ShippingAddress", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -609,21 +635,21 @@ namespace Readery.Data.Migrations
                     b.ToTable("ShippingAddresses");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Address", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Address", b =>
                 {
-                    b.HasOne("Readery.Data.Data.Models.Author", "Author")
+                    b.HasOne("Readery.Domain.Data.Models.Author", "Author")
                         .WithOne("Address")
-                        .HasForeignKey("Readery.Data.Data.Models.Address", "AuthorId");
+                        .HasForeignKey("Readery.Domain.Data.Models.Address", "AuthorId");
 
-                    b.HasOne("Readery.Data.Data.Models.Country", "Country")
+                    b.HasOne("Readery.Domain.Data.Models.Country", "Country")
                         .WithMany("Addresses")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Readery.Data.Data.Models.Publisher", "Publisher")
+                    b.HasOne("Readery.Domain.Data.Models.Publisher", "Publisher")
                         .WithOne("Address")
-                        .HasForeignKey("Readery.Data.Data.Models.Address", "PublisherId");
+                        .HasForeignKey("Readery.Domain.Data.Models.Address", "PublisherId");
 
                     b.Navigation("Author");
 
@@ -632,30 +658,30 @@ namespace Readery.Data.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("Readery.Data.Data.Models.Author", "Author")
+                    b.HasOne("Readery.Domain.Data.Models.Author", "Author")
                         .WithOne("User")
-                        .HasForeignKey("Readery.Data.Data.Models.ApplicationUser", "AuthorId");
+                        .HasForeignKey("Readery.Domain.Data.Models.ApplicationUser", "AuthorId");
 
-                    b.HasOne("Readery.Data.Data.Models.ShippingAddress", "ShippingAddress")
+                    b.HasOne("Readery.Domain.Data.Models.ShippingAddress", "ShippingAddress")
                         .WithOne("User")
-                        .HasForeignKey("Readery.Data.Data.Models.ApplicationUser", "ShippingAddressId");
+                        .HasForeignKey("Readery.Domain.Data.Models.ApplicationUser", "ShippingAddressId");
 
                     b.Navigation("Author");
 
                     b.Navigation("ShippingAddress");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Book", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Book", b =>
                 {
-                    b.HasOne("Readery.Data.Data.Models.Author", "Author")
+                    b.HasOne("Readery.Domain.Data.Models.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Readery.Data.Data.Models.Publisher", "Publisher")
+                    b.HasOne("Readery.Domain.Data.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -666,15 +692,15 @@ namespace Readery.Data.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Order", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
                 {
-                    b.HasOne("Readery.Data.Data.Models.ShippingAddress", "ShippingAddress")
+                    b.HasOne("Readery.Domain.Data.Models.ShippingAddress", "ShippingAddress")
                         .WithMany("Orders")
                         .HasForeignKey("ShippingAddressId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Readery.Data.Data.Models.ApplicationUser", "User")
+                    b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -685,15 +711,15 @@ namespace Readery.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.OrderBook", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.OrderBook", b =>
                 {
-                    b.HasOne("Readery.Data.Data.Models.Book", "Book")
+                    b.HasOne("Readery.Domain.Data.Models.Book", "Book")
                         .WithMany("OrderBooks")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Readery.Data.Data.Models.Order", "Order")
+                    b.HasOne("Readery.Domain.Data.Models.Order", "Order")
                         .WithMany("OrderBooks")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -704,9 +730,9 @@ namespace Readery.Data.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ShippingAddress", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
                 {
-                    b.HasOne("Readery.Data.Data.Models.Country", "Country")
+                    b.HasOne("Readery.Domain.Data.Models.Country", "Country")
                         .WithMany("ShippingAddresses")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -715,12 +741,12 @@ namespace Readery.Data.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Author", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Author", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();
@@ -731,24 +757,24 @@ namespace Readery.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Book", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Book", b =>
                 {
                     b.Navigation("OrderBooks");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Country", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Country", b =>
                 {
                     b.Navigation("Addresses");
 
                     b.Navigation("ShippingAddresses");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Order", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
                 {
                     b.Navigation("OrderBooks");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.Publisher", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.Publisher", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();
@@ -756,7 +782,7 @@ namespace Readery.Data.Migrations
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("Readery.Data.Data.Models.ShippingAddress", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
                 {
                     b.Navigation("Orders");
 

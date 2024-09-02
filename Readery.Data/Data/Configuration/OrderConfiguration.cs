@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Readery.Data.Data.Models;
+using Readery.Domain.Data.Models;
 
 namespace Readery.Domain.Data.Configuration
 {
