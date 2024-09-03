@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Readery.Domain.Data;
 using Readery.Domain.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Readery
 {
@@ -14,10 +15,20 @@ namespace Readery
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ReaderyDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<ReaderyDbContext>();
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredLength = 1;
+            })
+            .AddEntityFrameworkStores<ReaderyDbContext>();
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 

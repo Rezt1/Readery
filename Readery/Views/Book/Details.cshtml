@@ -1,1 +1,68 @@
-﻿hello
+﻿@model DetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="card w-75 font-monospace">
+    <div class="row g-0">
+        <div class="col-4">
+            <img src="~/@Model.ImagePath" class="w-100 h-100 p-2" alt="...">
+        </div>
+        <div class="col-8">
+            <div class="card-body">
+
+                <h3 class="card-title mb-4">@Model.Title</h3>
+                <p class="card-text p-2">Language: @Model.Language</p>
+                <p class="card-text p-2">Price: €@Model.Price</p>
+                <p class="card-text p-2">Pages: @Model.PagesCount</p>
+                <p class="card-text p-2">
+                    <small class="text-secondary">Written by @Model.AuthorName on @Model.WrittenOn.Day/@Model.WrittenOn.Month/@Model.WrittenOn.Year</small>
+                </p>
+                <h5 class="card-text text-center mt-4 fst-italic">DESCRIPTION</h5>
+                @if (Model.ShortDescription.Length < Model.FullDescription.Length)
+                {
+                    <p class="card-text fst-italic">@Model.ShortDescription <a href="#full-description" class="text-decoration-none">read more...</a></p>
+                }
+                else
+                {
+                    <p class="card-text fst-italic">@Model.ShortDescription</p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 mb-5 font-monospace">
+    <div class="col-4">
+        <h5 class="fw-bold text-center">AUTHOR</h5>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">@Model.AuthorName</h5>
+                <p class="card-text p-2"><b>AGE:</b> @Model.Author.Age years old</p>
+                <p class="card-text p-2"><b>ADDRESS:</b> @Model.Author.Address.Street, @Model.Author.Address.City, @Model.Author.Address.Country</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h5 class="fw-bold text-center">PUBLISHER</h5>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">@Model.Publisher.Name</h5>
+                <p class="card-text p-2"><b>CONTACT INFORMATION:</b> @Model.Publisher.Email, @Model.Publisher.PhoneNumber</p>
+                <p class="card-text p-2"><b>ADDRESS:</b> @Model.Publisher.Address.Street, @Model.Publisher.Address.City, @Model.Publisher.Address.Country</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.ShortDescription.Length < Model.FullDescription.Length)
+{
+    <div id="full-description">
+        <h5 class="text-center fst-italic">DESCRIPTION</h5>
+        <hr />
+        <p class="text-center mb-0 fst-italic">@Model.FullDescription</p>
+        <hr />
+    </div>
+}

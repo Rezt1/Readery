@@ -19,6 +19,7 @@ namespace Readery.Controllers
 
         public IActionResult Index()
         {
+            Console.WriteLine(context.Books.First().Description.Length);
             return View();
         }
 

@@ -56,7 +56,8 @@ namespace Readery.Controllers
             {
                 Id = book.Id,
                 Title = book.Title,
-                Description = book.Description,
+                ShortDescription = string.Join("", book.Description.Take(120)),
+                FullDescription = book.Description,
                 ImagePath = book.ImagePath,
                 Language = book.Language,
                 PagesCount = book.PagesCount,

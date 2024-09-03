@@ -1,5 +1,9 @@
 ﻿@model List<BasicBookViewModel>
 
+@{
+    ViewData["Title"] = "Books";
+}
+
 <div class="row justify-content-evenly">
 	@foreach(var book in Model)
 	{

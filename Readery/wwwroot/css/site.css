@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+p {
+    word-break: break-word;
+    margin-bottom: 0;
+}
