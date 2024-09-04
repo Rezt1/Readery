@@ -1,94 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Readery.Domain.Data;
-using Readery.Models.Address;
-using Readery.Models.Author;
-using Readery.Models.Book;
-using Readery.Models.Publisher;
+using Readery.Core.Contracts;
 
 namespace Readery.Controllers
 {
     public class BookController : Controller
     {
-        private readonly ReaderyDbContext context;
+        private readonly IBookService bookService;
 
-        public BookController(ReaderyDbContext _context)
+        public BookController(IBookService _bookService)
         {
-            context = _context;
+            bookService = _bookService;
         }
 
         public async Task<IActionResult> All()
         {
-            var books = await context.Books
-                .AsNoTracking()
-                .Select(b => new BasicBookViewModel()
-                {
-                    Id = b.Id,
-                    Title = b.Title,
-                    AuthorName = $"{b.Author.FirstName} {b.Author.LastName}",
-                    ImagePath = b.ImagePath,
-                    Language = b.Language,
-                    Price = b.Price,
-                })
-                .ToListAsync();
+            var books = await bookService.GetAllBooksAsync();
 
             return View(books);
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var book = await context.Books
-                .AsNoTracking()
-                .Include(b => b.Author)
-                    .ThenInclude(a => a.Address)
-                        .ThenInclude(a => a.Country)
-                .Include(b => b.Publisher)
-                    .ThenInclude(p => p.Address)
-                        .ThenInclude(a => a.Country)
-                .FirstOrDefaultAsync(b => b.Id == id);
-
-            if (book == null)
+            if (!await bookService.ExistsById(id))
             {
                 return NotFound();
             }
 
-            var details = new DetailsViewModel()
-            {
-                Id = book.Id,
-                Title = book.Title,
-                ShortDescription = string.Join("", book.Description.Take(120)),
-                FullDescription = book.Description,
-                ImagePath = book.ImagePath,
-                Language = book.Language,
-                PagesCount = book.PagesCount,
-                Price = book.Price,
-                WrittenOn = book.WrittenOn,
-                Author = new AuthorViewModel()
-                {
-                    Id = book.Author.Id,
-                    Age = DateTime.Now.Year - book.Author.BirthDate.Year,
-                    Address = new AddressViewModel()
-                    {
-                        City = book.Author.Address.City,
-                        Street = book.Author.Address.Street,
-                        Country = book.Author.Address.Country.Name
-                    }
-                },
-                AuthorName = $"{book.Author.FirstName} {book.Author.LastName}",
-                Publisher = new PublisherViewModel()
-                {
-                    Name = book.Publisher.Name,
-                    Email = book.Publisher.Email,
-                    Id = book.Publisher.Id,
-                    PhoneNumber = book.Publisher.PhoneNumber,
-                    Address = new AddressViewModel()
-                    {
-                        City = book.Publisher.Address.City,
-                        Country = book.Publisher.Address.Country.Name,
-                        Street = book.Publisher.Address.Street
-                    }
-                } 
-            };
+            var details = await bookService.GetBookDetailsAsync(id);
 
             return View(details);
         }

@@ -1,4 +1,4 @@
-﻿namespace Readery.Models.Book
+﻿namespace Readery.Core.Models.Book
 {
     public class BasicBookViewModel
     {

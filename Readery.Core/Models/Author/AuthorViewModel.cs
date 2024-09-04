@@ -1,7 +1,6 @@
-﻿using Readery.Models.Address;
-using Readery.Models.Book;
+﻿using Readery.Core.Models.Address;
 
-namespace Readery.Models.Author
+namespace Readery.Core.Models.Author
 {
     public class AuthorViewModel
     {

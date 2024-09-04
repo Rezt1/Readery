@@ -1,7 +1,7 @@
-﻿using Readery.Models.Author;
-using Readery.Models.Publisher;
+﻿using Readery.Core.Models.Author;
+using Readery.Core.Models.Publisher;
 
-namespace Readery.Models.Book
+namespace Readery.Core.Models.Book
 {
     public class DetailsViewModel : BasicBookViewModel
     {

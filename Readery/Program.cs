@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Readery.Core.Contracts;
+using Readery.Core.Services;
 using Readery.Domain.Data;
+using Readery.Domain.Data.Common;
 using Readery.Domain.Data.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace Readery
 {
@@ -16,18 +18,19 @@ namespace Readery
             builder.Services.AddDbContext<ReaderyDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            builder.Services.AddScoped<IRepository, Repository>();
+            builder.Services.AddScoped<IBookService, BookService>();
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ReaderyDbContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.Password.RequiredUniqueChars = 0;
-                options.Password.RequireDigit = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = true;
-                options.Password.RequiredLength = 1;
-            })
-            .AddEntityFrameworkStores<ReaderyDbContext>();
+                //options.LoginPath = "/Account/Login";
+                //options.LogoutPath = "/Account/Logout";
+            });
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
