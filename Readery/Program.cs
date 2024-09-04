@@ -18,16 +18,14 @@ namespace Readery
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ReaderyDbContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.Password.RequiredUniqueChars = 0;
-                options.Password.RequireDigit = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = true;
-                options.Password.RequiredLength = 1;
-            })
-            .AddEntityFrameworkStores<ReaderyDbContext>();
+                //options.LoginPath = "/Account/Login";
+                //options.LogoutPath = "/Account/Logout";
+            });
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
