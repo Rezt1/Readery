@@ -1,6 +1,6 @@
-﻿using Readery.Models.Address;
+﻿using Readery.Core.Models.Address;
 
-namespace Readery.Models.Publisher
+namespace Readery.Core.Models.Publisher
 {
     public class PublisherViewModel
     {

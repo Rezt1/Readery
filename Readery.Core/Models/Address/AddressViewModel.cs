@@ -1,4 +1,4 @@
-﻿namespace Readery.Models.Address
+﻿namespace Readery.Core.Models.Address
 {
     public class AddressViewModel
     {

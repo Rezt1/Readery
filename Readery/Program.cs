@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Readery.Core.Contracts;
+using Readery.Core.Services;
 using Readery.Domain.Data;
+using Readery.Domain.Data.Common;
 using Readery.Domain.Data.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace Readery
 {
@@ -15,6 +17,9 @@ namespace Readery
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ReaderyDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            builder.Services.AddScoped<IRepository, Repository>();
+            builder.Services.AddScoped<IBookService, BookService>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
