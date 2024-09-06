@@ -1,4 +1,5 @@
 ﻿using Readery.Core.Models.Book;
+using Readery.Models.Cart;
 
 namespace Readery.Core.Contracts
 {
@@ -9,5 +10,7 @@ namespace Readery.Core.Contracts
         public Task<DetailsViewModel> GetBookDetailsAsync(int id);
 
         public Task<bool> ExistsById(int id);
+
+        public Task<CartItemViewModel> GetCartBookById(int id);
     }
 }

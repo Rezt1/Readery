@@ -6,6 +6,7 @@ using Readery.Core.Models.Book;
 using Readery.Core.Models.Publisher;
 using Readery.Domain.Data.Common;
 using Readery.Domain.Data.Models;
+using Readery.Models.Cart;
 
 namespace Readery.Core.Services
 {
@@ -89,6 +90,20 @@ namespace Readery.Core.Services
                         Street = book.Publisher.Address.Street
                     }
                 }
+            };
+        }
+
+        public async Task<CartItemViewModel> GetCartBookById(int id)
+        {
+            var book = await repository.GetByIdAsync<Book>(id) ?? new Book(); // it can't be null so new Book won't be returned ever
+
+            return new CartItemViewModel()
+            {
+                BookId = book.Id,
+                BookTitle = book.Title,
+                ImagePath = book.ImagePath,
+                Price = book.Price,
+                Quantity = 1
             };
         }
     }

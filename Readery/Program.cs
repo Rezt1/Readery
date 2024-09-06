@@ -35,6 +35,12 @@ namespace Readery
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.Cookie.HttpOnly = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -55,8 +61,10 @@ namespace Readery
 
             app.UseRouting();
 
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.MapControllerRoute(
                 name: "default",

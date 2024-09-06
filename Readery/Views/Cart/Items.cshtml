@@ -1,0 +1,57 @@
+﻿@model Cart
+
+@{
+	ViewData["Title"] = "Cart";
+}
+
+<h2 class="text-center">My Cart</h2>
+<hr />
+
+@if (Model.Items.Any())
+{
+    <div class="w-75 mx-auto">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Book</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <th class="d-flex align-items-center gap-3" scope="row">
+                            <div style="max-width: 4.5rem;">
+                                <img src="~/@item.ImagePath" />
+                            </div>
+                            <p>@item.BookTitle</p>
+                        </th>
+                        <td class="align-text-bottom">
+                            <form asp-area="" asp-controller="Cart" asp-action="SetCartItemCount">
+                                <input class="p-2" id="input-count" type="number" value="@item.Quantity" style="max-width: 3.5rem">
+                            </form>
+                        </td>
+                        <td class="align-text-bottom">€@(item.Price * item.Quantity)</td>
+                        <td class="align-text-bottom">
+                            <form asp-area="" asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@item.BookId">
+                                <button class="btn-remove" type="submit">X</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h4 class="text-center">I am sooooooooooo empty :(</h4>
+    <h5 class="text-center">
+        <a asp-area="" asp-controller="Book" asp-action="All">Go and bring me something!!!</a>
+    </h5>
+}
+
+
