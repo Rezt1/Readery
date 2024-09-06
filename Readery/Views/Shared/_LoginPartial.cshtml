@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 
-<ul class="navbar-nav align-items-center">
+<ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item dropdown">
@@ -16,6 +16,7 @@
                 </li>
             </ul>
         </li>
+        <partial name="_CartPartial"></partial>
     }
     else
     {
@@ -25,5 +26,6 @@
         <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
         </li>
+        <partial name="_CartPartial"></partial>
     }
 </ul>

@@ -4,7 +4,7 @@
     ViewData["Title"] = Model.Title;
 }
 
-<div class="card w-75 font-monospace">
+<div class="card w-75 font-monospace ">
     <div class="row g-0">
         <div class="col-4">
             <img src="~/@Model.ImagePath" class="w-100 h-100 p-2" alt="...">
@@ -29,6 +29,9 @@
                     <p class="card-text fst-italic">@Model.ShortDescription</p>
                 }
 
+                <div class="text-end mt-3">
+                    <button id="addToCartBtn" data-book-id="@Model.Id" class="btn btn-primary">Add to Cart</button>
+                </div>
             </div>
         </div>
     </div>
