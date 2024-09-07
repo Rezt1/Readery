@@ -10,7 +10,7 @@
 @if (Model.Items.Any())
 {
     <div class="w-75 mx-auto">
-        <table class="table mt-5">
+        <table class="table mt-5 mb-5">
             <thead>
                 <tr>
                     <th scope="col">Book</th>
@@ -30,8 +30,8 @@
                             <p>@item.BookTitle</p>
                         </th>
                         <td class="align-text-bottom">
-                            <form asp-area="" asp-controller="Cart" asp-action="SetCartItemCount">
-                                <input class="p-2" id="input-count" type="number" value="@item.Quantity" style="max-width: 3.5rem">
+                            <form asp-area="" asp-controller="Cart" asp-action="SetCartItemCount" asp-route-id="@item.BookId">
+                                <input class="p-2 item" name="newCount" type="number" min="1" value="@item.Quantity" style="max-width: 3.5rem">
                             </form>
                         </td>
                         <td class="align-text-bottom">€@(item.Price * item.Quantity)</td>
@@ -44,6 +44,20 @@
                 }
             </tbody>
         </table>
+    </div>
+
+    <hr />
+
+    <div class="d-flex justify-content-between w-75 pt-3 mx-auto">
+        <a asp-area="" asp-controller="Book" asp-action="All">Go back to shopping</a>
+        <div>
+            <p class="mb-4">Total Price: €@Model.TotalPrice</p>
+            <form>
+                <button class="btn btn-primary" type="submit">
+                    <span class="me-2">Proceed</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
     </div>
 }
 else
