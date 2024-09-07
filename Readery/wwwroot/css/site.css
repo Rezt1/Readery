@@ -27,6 +27,10 @@ img{
     height: auto;
 }
 
+.item{
+
+}
+
 .cart-number {
     display: flex;
     justify-content: center;

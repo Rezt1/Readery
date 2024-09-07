@@ -27,7 +27,7 @@ namespace Readery.Controllers
         {
             if (!await bookService.ExistsById(id))
             {
-                return BadRequest();
+                return NotFound();
             }
 
             var cart = HttpContext.Session.GetObjectFromJson<Cart>("Cart") ?? new Cart();
@@ -70,7 +70,7 @@ namespace Readery.Controllers
 
             if (item == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             cart.Items.Remove(item);
@@ -80,8 +80,28 @@ namespace Readery.Controllers
             return RedirectToAction(nameof(Items));
         }
 
-        public IActionResult SetCartItemCount(int id,  int count)
+        public IActionResult SetCartItemCount(int id, int newCount)
         {
+            var cart = HttpContext.Session.GetObjectFromJson<Cart>(nameof(Cart)) ?? null;
+
+            if (cart == null)
+            {
+                return BadRequest();
+            }
+
+            var item = cart.Items.FirstOrDefault(i => i.BookId == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid && newCount > 0)
+            {
+                item.Quantity = newCount;
+                HttpContext.Session.SetObjectAsJson(nameof(Cart), cart);
+            }
+
             return RedirectToAction(nameof(Items));
         }
     }
