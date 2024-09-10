@@ -15,6 +15,12 @@ namespace Readery.Domain.Data.Models
         public ApplicationUser User { get; set; } = null!;
 
         [Required]
+        public int PersonalDeliveryInformationId { get; set; }
+
+        [ForeignKey(nameof(PersonalDeliveryInformationId))]
+        public PersonalDeliveryInformation PersonalDeliveryInformation { get; set; } = null!;
+
+        [Required]
         public int ShippingAddressId { get; set; }
 
         [ForeignKey(nameof(ShippingAddressId))]

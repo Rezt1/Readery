@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Readery.Domain.Migrations
 {
-    public partial class InitialDb_Created : Migration
+    public partial class Database_Created : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,6 +37,23 @@ namespace Readery.Domain.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonalDeliveryInformation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonalDeliveryInformation", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,7 +219,7 @@ namespace Readery.Domain.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PagesCount = table.Column<int>(type: "int", nullable: false),
                     Language = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -237,6 +254,7 @@ namespace Readery.Domain.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: true),
                     ShippingAddressId = table.Column<int>(type: "int", nullable: true),
+                    PersonalDeliveryInformationId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -259,6 +277,11 @@ namespace Readery.Domain.Migrations
                         name: "FK_Users_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Users_PersonalDeliveryInformation_PersonalDeliveryInformationId",
+                        column: x => x.PersonalDeliveryInformationId,
+                        principalTable: "PersonalDeliveryInformation",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_ShippingAddresses_ShippingAddressId",
@@ -343,8 +366,8 @@ namespace Readery.Domain.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "AccessFailedCount", "AuthorId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShippingAddressId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("c1358e18-acd5-4f2c-bd21-778e04d039b1"), 0, null, "1d1a6c51-4044-4a04-b523-5b270b1d22df", "common1@gmail.com", false, false, null, "COMMON1@GMAIL.COM", "COMMON", "AQAAAAEAACcQAAAAEExsaQosBy5a81tSlH83DSVTz5h2RxSYSedoGf3lvP3t206NgNZS47mC4KchdpHtxA==", null, false, "86a53d74-7a1f-4758-ab9f-c1724ec3002d", null, false, "Common" });
+                columns: new[] { "Id", "AccessFailedCount", "AuthorId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PersonalDeliveryInformationId", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShippingAddressId", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("0399a1d3-8614-4cea-88ad-dda9b9977a3d"), 0, null, "7ddb1669-3d71-4036-becc-7a1eaeddd593", "common1@gmail.com", false, false, null, "COMMON1@GMAIL.COM", "COMMON", "AQAAAAEAACcQAAAAEBy82bjJzIddkxoWI7280ZHBC7SesiFIf7nleQV+7769hz2uKA85gk5dDGDSon/jYA==", null, null, false, "474ff4f2-8593-4778-b752-f0dc481634e9", null, false, "Common" });
 
             migrationBuilder.InsertData(
                 table: "Addresses",
@@ -360,16 +383,16 @@ namespace Readery.Domain.Migrations
                 columns: new[] { "Id", "AddedOn", "AuthorId", "Description", "ImagePath", "IsRemoved", "Language", "PagesCount", "Price", "PublisherId", "Title", "UpdatedOn", "WrittenOn" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(3985), 1, "The main character does some pretty amazing stuff and is super amazing", "images/books/cote1.jpg", false, "en", 301, 30.00m, 1, "Classroom of the elite (Light Novel) Vol. 1", null, new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4014), 1, "The main character does some pretty bad stuff and is super evil", "images/books/cote3.jpg", false, "en", 280, 27.00m, 1, "Classroom of the elite (Light Novel) Vol. 3", null, new DateTime(2017, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4017), 1, "The main character does some pretty shady stuff and is super sneaky", "images/books/cote6.jpg", false, "en", 445, 35.00m, 1, "Classroom of the elite (Light Novel) Vol. 6", null, new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, new DateTime(2024, 9, 2, 15, 39, 15, 365, DateTimeKind.Local).AddTicks(4034), 1, "The main character does some pretty embarassing stuff and is super unbothered", "images/books/cote8.jpg", false, "en", 415, 35.50m, 1, "Classroom of the elite (Light Novel) Vol. 8", null, new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(810), 1, "Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokouji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?", "images/books/cote1.jpg", false, "en", 301, 30.00m, 1, "Classroom of the elite (Light Novel) Vol. 1", null, new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(839), 1, "Having survived their final exams, Ayanokouji and the others are looking forward to an idyllic school-sponsored summer vacation aboard a cruise ship. But nothing is ever quite as it seems with the Tokyo Advanced Nurturing High School, and the cruise turns out to be the cover for a series of special tests! What grueling new challenges await them out at sea?!", "images/books/cote3.jpg", false, "en", 280, 27.00m, 1, "Classroom of the elite (Light Novel) Vol. 3", null, new DateTime(2017, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(841), 1, "There’s upheaval in the air as another special exam approaches and Nagumo officially replaces Horikita Manabu as student council president. Meanwhile, Ryuuen is out for blood, and he’s set his sights on Horikita Suzune as the next possible candidate for Class D’s mysterious mastermind!", "images/books/cote6.jpg", false, "en", 445, 35.00m, 1, "Classroom of the elite (Light Novel) Vol. 6", null, new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(856), 1, "The third semester kicks off in high gear with a special boot camp deep in the mountains. Forcibly separated into groups along grade and gender lines, the first, second and third years alike must work together to survive the rugged terrain. Even worse? The leader of the group that comes in last will be expelled. Can Class D make it back to campus intact, or is this where they finally say goodbye to one of their own?", "images/books/cote8.jpg", false, "en", 415, 35.50m, 1, "Classroom of the elite (Light Novel) Vol. 8", null, new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "AccessFailedCount", "AuthorId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShippingAddressId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"), 0, 1, "f3faf84e-336a-4072-8fb8-2da7566ac5be", "author1@gmail.com", false, false, null, "AUTHOR@GMAIL.COM", "AUTHOR", "AQAAAAEAACcQAAAAEKhdPCfSy1mggNWB4LBWedTrKCyyOwEiLLjbcqWwNtjLxGVbS8VS6eBr2y4oMt3hAw==", null, false, "9aaf540b-762b-4da6-8f19-e472759f193b", null, false, "Author" });
+                columns: new[] { "Id", "AccessFailedCount", "AuthorId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PersonalDeliveryInformationId", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "ShippingAddressId", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"), 0, 1, "8e2a10ec-e269-4738-b959-d2f6568ec9d8", "author1@gmail.com", false, false, null, "AUTHOR@GMAIL.COM", "AUTHOR", "AQAAAAEAACcQAAAAEBfsk36YypdNKeXmOvsNEikKUmUAQAAvsE4ifjRuHUTCXzbfJx8i/wmd9R1C01pMsQ==", null, null, false, "56d8e16b-cf99-4f48-9083-54c4d7612957", null, false, "Author" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_AuthorId",
@@ -433,6 +456,13 @@ namespace Readery.Domain.Migrations
                 filter: "[AuthorId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_PersonalDeliveryInformationId",
+                table: "Users",
+                column: "PersonalDeliveryInformationId",
+                unique: true,
+                filter: "[PersonalDeliveryInformationId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_ShippingAddressId",
                 table: "Users",
                 column: "ShippingAddressId",
@@ -480,6 +510,9 @@ namespace Readery.Domain.Migrations
 
             migrationBuilder.DropTable(
                 name: "Authors");
+
+            migrationBuilder.DropTable(
+                name: "PersonalDeliveryInformation");
 
             migrationBuilder.DropTable(
                 name: "ShippingAddresses");

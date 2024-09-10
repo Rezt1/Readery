@@ -10,8 +10,8 @@ namespace Readery.Domain.Data.Configuration
         {
             builder
                 .HasOne(sa => sa.User)
-                .WithOne(u => u.ShippingAddress)
-                .HasForeignKey<ApplicationUser>(u => u.ShippingAddressId);
+                .WithMany(u => u.ShippingAddresses)
+                .HasForeignKey(sa => sa.UserId);
         }
     }
 }
