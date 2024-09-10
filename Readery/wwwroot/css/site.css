@@ -54,6 +54,18 @@ img{
     z-index: 1000
 }
 
+.num-element{
+    background-color: lightblue;
+    display: inline-block;
+    width: 1.2em;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.hover-arrow:hover{
+    cursor: pointer;
+}
+
 .btn-remove {
     background: none;
     border: none;
@@ -63,6 +75,20 @@ img{
 .btn-remove:hover {
     opacity: 0.5;
 }
+
+.input-after{
+    position: relative;
+}
+
+.input-after::after {
+    content: '*';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: blue;
+    font-size: 1.2em;
+}
+
 
 form > .btn-remove{
     color: red;

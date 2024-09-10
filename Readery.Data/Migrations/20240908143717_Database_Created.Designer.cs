@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Readery.Domain.Data;
 
@@ -11,9 +12,10 @@ using Readery.Domain.Data;
 namespace Readery.Domain.Migrations
 {
     [DbContext(typeof(ReaderyDbContext))]
-    partial class ReaderyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240908143717_Database_Created")]
+    partial class Database_Created
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,6 +235,9 @@ namespace Readery.Domain.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PersonalDeliveryInformationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -241,6 +246,9 @@ namespace Readery.Domain.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ShippingAddressId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -254,22 +262,30 @@ namespace Readery.Domain.Migrations
                         .IsUnique()
                         .HasFilter("[AuthorId] IS NOT NULL");
 
+                    b.HasIndex("PersonalDeliveryInformationId")
+                        .IsUnique()
+                        .HasFilter("[PersonalDeliveryInformationId] IS NOT NULL");
+
+                    b.HasIndex("ShippingAddressId")
+                        .IsUnique()
+                        .HasFilter("[ShippingAddressId] IS NOT NULL");
+
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("97d6d163-a110-4cea-be40-93a6903a604e"),
+                            Id = new Guid("0399a1d3-8614-4cea-88ad-dda9b9977a3d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcfe0f03-6cb5-4667-8ab5-0a65a45b26c3",
+                            ConcurrencyStamp = "7ddb1669-3d71-4036-becc-7a1eaeddd593",
                             Email = "common1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "COMMON1@GMAIL.COM",
                             NormalizedUserName = "COMMON",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKOY3QYH7yTDJp2bHwkOf9f+eHa+xvst/0Cr8QZMzJGgw/wxFg2K/JXcm2DF00acow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBy82bjJzIddkxoWI7280ZHBC7SesiFIf7nleQV+7769hz2uKA85gk5dDGDSon/jYA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6a3e6d58-d639-449a-81d1-7ca27eaecf02",
+                            SecurityStamp = "474ff4f2-8593-4778-b752-f0dc481634e9",
                             TwoFactorEnabled = false,
                             UserName = "Common"
                         },
@@ -278,15 +294,15 @@ namespace Readery.Domain.Migrations
                             Id = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
                             AccessFailedCount = 0,
                             AuthorId = 1,
-                            ConcurrencyStamp = "d4c18e2b-0a7a-40ac-a722-49c207f459c4",
+                            ConcurrencyStamp = "8e2a10ec-e269-4738-b959-d2f6568ec9d8",
                             Email = "author1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@GMAIL.COM",
                             NormalizedUserName = "AUTHOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtR4FmlhUJk7FPSM3qwEskVUADxmFHJTCVr/peKXsZ46MfdzAJ0dN3+r3MVH6DQNQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBfsk36YypdNKeXmOvsNEikKUmUAQAAvsE4ifjRuHUTCXzbfJx8i/wmd9R1C01pMsQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c7021d4-33c7-455f-93cc-47dd5a65705b",
+                            SecurityStamp = "56d8e16b-cf99-4f48-9083-54c4d7612957",
                             TwoFactorEnabled = false,
                             UserName = "Author"
                         });
@@ -399,7 +415,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9042),
+                            AddedOn = new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(810),
                             AuthorId = 1,
                             Description = "Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokouji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?",
                             ImagePath = "images/books/cote1.jpg",
@@ -414,7 +430,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9077),
+                            AddedOn = new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(839),
                             AuthorId = 1,
                             Description = "Having survived their final exams, Ayanokouji and the others are looking forward to an idyllic school-sponsored summer vacation aboard a cruise ship. But nothing is ever quite as it seems with the Tokyo Advanced Nurturing High School, and the cruise turns out to be the cover for a series of special tests! What grueling new challenges await them out at sea?!",
                             ImagePath = "images/books/cote3.jpg",
@@ -429,7 +445,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9102),
+                            AddedOn = new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(841),
                             AuthorId = 1,
                             Description = "There’s upheaval in the air as another special exam approaches and Nagumo officially replaces Horikita Manabu as student council president. Meanwhile, Ryuuen is out for blood, and he’s set his sights on Horikita Suzune as the next possible candidate for Class D’s mysterious mastermind!",
                             ImagePath = "images/books/cote6.jpg",
@@ -444,7 +460,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9105),
+                            AddedOn = new DateTime(2024, 9, 8, 17, 37, 16, 567, DateTimeKind.Local).AddTicks(856),
                             AuthorId = 1,
                             Description = "The third semester kicks off in high gear with a special boot camp deep in the mountains. Forcibly separated into groups along grade and gender lines, the first, second and third years alike must work together to survive the rugged terrain. Even worse? The leader of the group that comes in last will be expelled. Can Class D make it back to campus intact, or is this where they finally say goodbye to one of their own?",
                             ImagePath = "images/books/cote8.jpg",
@@ -509,9 +525,6 @@ namespace Readery.Domain.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PersonalDeliveryInformationId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ShippingAddressId")
                         .HasColumnType("int");
 
@@ -519,8 +532,6 @@ namespace Readery.Domain.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonalDeliveryInformationId");
 
                     b.HasIndex("ShippingAddressId");
 
@@ -566,9 +577,6 @@ namespace Readery.Domain.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -592,12 +600,7 @@ namespace Readery.Domain.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Version")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("PersonalDeliveryInformation");
                 });
@@ -659,9 +662,6 @@ namespace Readery.Domain.Migrations
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -670,19 +670,12 @@ namespace Readery.Domain.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Version")
+                    b.Property<int>("ZipCode")
                         .HasColumnType("int");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ShippingAddresses");
                 });
@@ -716,7 +709,19 @@ namespace Readery.Domain.Migrations
                         .WithOne("User")
                         .HasForeignKey("Readery.Domain.Data.Models.ApplicationUser", "AuthorId");
 
+                    b.HasOne("Readery.Domain.Data.Models.PersonalDeliveryInformation", "PersonalDeliveryInformation")
+                        .WithOne("User")
+                        .HasForeignKey("Readery.Domain.Data.Models.ApplicationUser", "PersonalDeliveryInformationId");
+
+                    b.HasOne("Readery.Domain.Data.Models.ShippingAddress", "ShippingAddress")
+                        .WithOne("User")
+                        .HasForeignKey("Readery.Domain.Data.Models.ApplicationUser", "ShippingAddressId");
+
                     b.Navigation("Author");
+
+                    b.Navigation("PersonalDeliveryInformation");
+
+                    b.Navigation("ShippingAddress");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Book", b =>
@@ -740,12 +745,6 @@ namespace Readery.Domain.Migrations
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
                 {
-                    b.HasOne("Readery.Domain.Data.Models.PersonalDeliveryInformation", "PersonalDeliveryInformation")
-                        .WithMany("Orders")
-                        .HasForeignKey("PersonalDeliveryInformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Readery.Domain.Data.Models.ShippingAddress", "ShippingAddress")
                         .WithMany("Orders")
                         .HasForeignKey("ShippingAddressId")
@@ -757,8 +756,6 @@ namespace Readery.Domain.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("PersonalDeliveryInformation");
 
                     b.Navigation("ShippingAddress");
 
@@ -784,17 +781,6 @@ namespace Readery.Domain.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Readery.Domain.Data.Models.PersonalDeliveryInformation", b =>
-                {
-                    b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
-                        .WithMany("PersonalDeliveryInformation")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
                 {
                     b.HasOne("Readery.Domain.Data.Models.Country", "Country")
@@ -803,24 +789,12 @@ namespace Readery.Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
-                        .WithMany("ShippingAddresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Country");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("PersonalDeliveryInformation");
-
-                    b.Navigation("ShippingAddresses");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Author", b =>
@@ -853,7 +827,8 @@ namespace Readery.Domain.Migrations
 
             modelBuilder.Entity("Readery.Domain.Data.Models.PersonalDeliveryInformation", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Publisher", b =>
@@ -867,6 +842,9 @@ namespace Readery.Domain.Migrations
             modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

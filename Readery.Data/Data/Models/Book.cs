@@ -11,7 +11,7 @@ namespace Readery.Domain.Data.Models
         [Required, MaxLength(50)]
         public string Title { get; set; } = string.Empty;
 
-        [Required, MaxLength(200)]
+        [Required, MaxLength(500)]
         public string Description { get; set; } = string.Empty;
 
         [Required]

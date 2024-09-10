@@ -70,7 +70,7 @@ namespace Readery.Domain.Data.Configuration
             var passwordHasher = new PasswordHasher<ApplicationUser>();
 
             CommonUser.PasswordHash = passwordHasher.HashPassword(CommonUser, "commonPassword");
-            AuthorUser.PasswordHash = passwordHasher.HashPassword(AuthorUser, "commonPassword");
+            AuthorUser.PasswordHash = passwordHasher.HashPassword(AuthorUser, "authorPassword");
         }
 
         private void SeedCountries()
@@ -155,7 +155,7 @@ namespace Readery.Domain.Data.Configuration
             {
                 Id = 1,
                 Title = "Classroom of the elite (Light Novel) Vol. 1",
-                Description = "The main character does some pretty amazing stuff and is super amazing",
+                Description = "Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokouji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?",
                 ImagePath = "images/books/cote1.jpg",
                 Language  = "en",
                 PagesCount = 301,
@@ -171,7 +171,7 @@ namespace Readery.Domain.Data.Configuration
             {
                 Id = 2,
                 Title = "Classroom of the elite (Light Novel) Vol. 3",
-                Description = "The main character does some pretty bad stuff and is super evil",
+                Description = "Having survived their final exams, Ayanokouji and the others are looking forward to an idyllic school-sponsored summer vacation aboard a cruise ship. But nothing is ever quite as it seems with the Tokyo Advanced Nurturing High School, and the cruise turns out to be the cover for a series of special tests! What grueling new challenges await them out at sea?!",
                 ImagePath = "images/books/cote3.jpg",
                 Language = "en",
                 PagesCount = 280,
@@ -187,7 +187,7 @@ namespace Readery.Domain.Data.Configuration
             {
                 Id = 3,
                 Title = "Classroom of the elite (Light Novel) Vol. 6",
-                Description = "The main character does some pretty shady stuff and is super sneaky",
+                Description = "There’s upheaval in the air as another special exam approaches and Nagumo officially replaces Horikita Manabu as student council president. Meanwhile, Ryuuen is out for blood, and he’s set his sights on Horikita Suzune as the next possible candidate for Class D’s mysterious mastermind!",
                 ImagePath = "images/books/cote6.jpg",
                 Language = "en",
                 PagesCount = 445,
@@ -203,7 +203,7 @@ namespace Readery.Domain.Data.Configuration
             {
                 Id = 4,
                 Title = "Classroom of the elite (Light Novel) Vol. 8",
-                Description = "The main character does some pretty embarassing stuff and is super unbothered",
+                Description = "The third semester kicks off in high gear with a special boot camp deep in the mountains. Forcibly separated into groups along grade and gender lines, the first, second and third years alike must work together to survive the rugged terrain. Even worse? The leader of the group that comes in last will be expelled. Can Class D make it back to campus intact, or is this where they finally say goodbye to one of their own?",
                 ImagePath = "images/books/cote8.jpg",
                 Language = "en",
                 PagesCount = 415,

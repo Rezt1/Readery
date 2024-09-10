@@ -15,7 +15,7 @@ namespace Readery.Controllers
         }
 
         [HttpGet]
-        public IActionResult Items()
+        public IActionResult Index()
         {
             var cart = HttpContext.Session.GetObjectFromJson<Cart>(nameof(Cart)) ?? new Cart();
 
@@ -77,9 +77,10 @@ namespace Readery.Controllers
 
             HttpContext.Session.SetObjectAsJson(nameof(Cart), cart);
 
-            return RedirectToAction(nameof(Items));
+            return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
         public IActionResult SetCartItemCount(int id, int newCount)
         {
             var cart = HttpContext.Session.GetObjectFromJson<Cart>(nameof(Cart)) ?? null;
@@ -102,7 +103,7 @@ namespace Readery.Controllers
                 HttpContext.Session.SetObjectAsJson(nameof(Cart), cart);
             }
 
-            return RedirectToAction(nameof(Items));
+            return RedirectToAction(nameof(Index));
         }
     }
 }
