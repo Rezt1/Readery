@@ -1,10 +1,10 @@
-﻿using static Readery.Domain.Data.Constants.PersonalDeliveryInformationConstants;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using static Readery.Domain.Data.Constants.DeliveryInformationConstants;
 
 namespace Readery.Domain.Data.Models
 {
-    public class PersonalDeliveryInformation
+    public class DeliveryInformation
     {
         [Key]
         public int Id { get; set; }
@@ -20,6 +20,21 @@ namespace Readery.Domain.Data.Models
 
         [Required, MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = string.Empty;
+
+        [Required, MaxLength(StreetMaxLength)]
+        public string Street { get; set; } = string.Empty;
+
+        [Required, MaxLength(CityMaxLength)]
+        public string City { get; set; } = string.Empty;
+
+        [Required]
+        public int CountryId { get; set; }
+
+        [ForeignKey(nameof(CountryId))]
+        public Country Country { get; set; } = null!;
+
+        [Required, MaxLength(ZipCodeMaxLength)]
+        public string ZipCode { get; set; } = string.Empty;
 
         [Required]
         public Guid UserId { get; set; }

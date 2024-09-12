@@ -8,9 +8,9 @@ namespace Readery.Domain.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.HasMany(au => au.PersonalDeliveryInformation)
-                .WithOne(pdi => pdi.User)
-                .HasForeignKey(pdi => pdi.UserId);
+            builder.HasMany(au => au.DeliveryInformation)
+                .WithOne(di => di.User)
+                .HasForeignKey(di => di.UserId);
 
             var seeder = new DataSeeder();
             builder.HasData(new[] { seeder.CommonUser, seeder.AuthorUser });

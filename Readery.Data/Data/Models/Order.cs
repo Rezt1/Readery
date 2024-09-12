@@ -15,19 +15,16 @@ namespace Readery.Domain.Data.Models
         public ApplicationUser User { get; set; } = null!;
 
         [Required]
-        public int PersonalDeliveryInformationId { get; set; }
+        public int DeliveryInformationId { get; set; }
 
-        [ForeignKey(nameof(PersonalDeliveryInformationId))]
-        public PersonalDeliveryInformation PersonalDeliveryInformation { get; set; } = null!;
-
-        [Required]
-        public int ShippingAddressId { get; set; }
-
-        [ForeignKey(nameof(ShippingAddressId))]
-        public ShippingAddress ShippingAddress { get; set; } = null!;
+        [ForeignKey(nameof(DeliveryInformationId))]
+        public DeliveryInformation DeliveryInformation { get; set; } = null!;
 
         [Required]
         public DateTime OrderDate { get; set; }
+
+        [Required]
+        public decimal TotalPrice { get; set; }
 
         public ICollection<OrderBook> OrderBooks { get; set; } = new List<OrderBook>();
     }

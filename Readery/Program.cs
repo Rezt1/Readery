@@ -20,6 +20,8 @@ namespace Readery
 
             builder.Services.AddScoped<IRepository, Repository>();
             builder.Services.AddScoped<IBookService, BookService>();
+            builder.Services.AddScoped<ICountryService, CountryService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

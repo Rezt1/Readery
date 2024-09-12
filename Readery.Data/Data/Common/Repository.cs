@@ -11,6 +11,16 @@ namespace Readery.Domain.Data.Common
             context = _context;
         }
 
+        public async Task AddAsync<T>(T entity) where T : class
+        {
+            await GetDbSet<T>().AddAsync(entity);
+        }
+
+        public async Task AddRangeAsync<T>(IEnumerable<T> entities) where T : class
+        {
+            await GetDbSet<T>().AddRangeAsync(entities);
+        }
+
         public IQueryable<T> GetAll<T>() where T : class
         {
             return GetDbSet<T>();
@@ -22,7 +32,7 @@ namespace Readery.Domain.Data.Common
                 .AsNoTracking();
         }
 
-        public async Task<T?> GetByIdAsync<T>(int id) where T : class
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
             return await GetDbSet<T>().FindAsync(id);
         }

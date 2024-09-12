@@ -12,6 +12,6 @@ namespace Readery.Domain.Data.Models
 
         public ICollection<Address> Addresses { get; set; } = new List<Address>();
 
-        public ICollection<ShippingAddress> ShippingAddresses { get; set; } = new List<ShippingAddress>();
+        public ICollection<DeliveryInformation> DeliveryInformation { get; set; } = new List<DeliveryInformation>();
     }
 }

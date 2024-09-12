@@ -1,7 +1,7 @@
 ﻿@model DeliveryInformationViewModel
 
 
-<form class="pt-5">
+<form asp-area="" asp-controller="Order" asp-action="Index" method="post" class="pt-5">
     <div class="row g-5 justify-content-evenly w-100 mx-auto" >
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -16,9 +16,9 @@
                 <label class="col-sm-4 col-form-label col-form-label-sm">Name:</label>
                 <div class="col-sm-8">
                     <div class="input-after">
-                        <input asp-for="PersonalInformation.FirstName" placeholder="name..." class="form-control form-control-sm" />
+                        <input asp-for="FirstName" placeholder="name..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="PersonalInformation.FirstName" class="text-danger"></span>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
             </div>
 
@@ -26,9 +26,9 @@
                 <label class="col-sm-4 col-form-label col-form-label-sm">Surname:</label>
                 <div class="col-sm-8">
                     <div class="input-after">
-                        <input asp-for="PersonalInformation.LastName" placeholder="surname..." class="form-control form-control-sm" />
+                        <input asp-for="LastName" placeholder="surname..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="PersonalInformation.LastName" class="text-danger"></span>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
 
@@ -38,9 +38,9 @@
                 <label class="col-sm-4 col-form-label col-form-label-sm">Email:</label>
                 <div class="col-sm-8">
                     <div class="input-after">
-                        <input asp-for="PersonalInformation.Email" placeholder="email..." class="form-control form-control-sm" />
+                        <input asp-for="Email" placeholder="email..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="PersonalInformation.Email" class="text-danger"></span>
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
 
@@ -48,9 +48,9 @@
                 <label class="col-sm-4 col-form-label col-form-label-sm">Phone number:</label>
                 <div class="col-sm-8">
                     <div class="input-after">
-                        <input asp-for="PersonalInformation.PhoneNumber" placeholder="phone number..." class="form-control form-control-sm" />
+                        <input asp-for="PhoneNumber" placeholder="phone number..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="PersonalInformation.PhoneNumber" class="text-danger"></span>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
             </div>
                 
@@ -59,16 +59,16 @@
         <div class="col-md-6 shadow p-5 h-100 position-relative" style="border: 1px solid black">
 
             <h3 class="position-absolute text-nowrap" style="left: 0; top: -1.7em">
-                <span class="num-element">2</span> Delivery Information
+                <span class="num-element">2</span> Shipping Information
             </h3>
 
             <div class="row mb-4">
                 <label class="col-sm-2 col-form-label col-form-label-sm">Street:</label>
                 <div class="col-sm-9">
                     <div class="input-after">
-                        <input asp-for="ShippingAddress.Street" placeholder="street..." class="form-control form-control-sm" />
+                        <input asp-for="Street" placeholder="street..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="ShippingAddress.Street" class="text-danger"></span>
+                    <span asp-validation-for="Street" class="text-danger"></span>
                 </div>
             </div>
 
@@ -76,38 +76,53 @@
                 <label class="col-sm-2 col-form-label col-form-label-sm">City:</label>
                 <div class="col-sm-4 di-c-mb-res">
                     <div class="input-after">
-                        <input asp-for="ShippingAddress.City" placeholder="city..." class="form-control form-control-sm" />
+                        <input asp-for="City" placeholder="city..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="ShippingAddress.City" class="text-danger"></span>
+                    <span asp-validation-for="City" class="text-danger"></span>
                 </div>
 
                 <label class="col-sm-1 col-form-label col-form-label-sm">Zip:</label>
                 <div class="col-sm-4">
                     <div class="input-after">
-                        <input asp-for="ShippingAddress.ZipCode" placeholder="zip..." class="form-control form-control-sm" />
+                        <input asp-for="ZipCode" placeholder="zip..." class="form-control form-control-sm" />
                     </div>
-                    <span asp-validation-for="ShippingAddress.ZipCode" class="text-danger"></span>
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="row">
                 <label class="col-sm-3 col-form-label col-form-label-sm">Country:</label>
                 <div class="col-sm-8">
-                    <select asp-for="ShippingAddress.CountryId" class="form-select hover-arrow">
+                    <select asp-for="CountryId" class="form-select hover-arrow">
                         <option value="">Choose a country...</option>
-                        @* @foreach (var country in Model.ShippingAddress.Countries)
+                        @foreach (var country in Model.Countries)
                         {
-                            <option value="@country.Id">@country.Name</option>
-                        } *@
+                            if (Model.CountryId == country.Id)
+                            {
+                                <option value="@country.Id" selected>@country.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@country.Id" >@country.Name</option>
+                            }
+                        }
                     </select>
-                    <span asp-validation-for="ShippingAddress.CountryId" class="text-danger"></span>
+                    <span asp-validation-for="CountryId" class="text-danger"></span>
                 </div>
             </div>
+
+            <div class="form-check position-absolute" style="bottom: -3em; right: 0">
+                <input asp-for="RememberDeliveryInfo" checked class="form-check-input hover-arrow">
+                <label class="form-check-label" for="dropdownCheck">
+                    Remember delivery information
+                </label>
+            </div>
+
 
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-5">
+    <div class="d-flex justify-content-between mt-5 mt-res">
         <a asp-area="" asp-controller="Cart" asp-action="Index">Go Back to Cart</a>
         
         <button class="btn btn-primary" type="submit">

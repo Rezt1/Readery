@@ -18,16 +18,14 @@ namespace Readery.Domain.Data
         public DbSet<Publisher> Publishers { get; set; } = null!;
         public DbSet<Address> Addresses { get; set; } = null!;
         public DbSet<Country> Countries { get; set; } = null!;
-        public DbSet<ShippingAddress> ShippingAddresses { get; set; } = null!;
         public DbSet<OrderBook> OrderBooks { get; set; } = null!;
         public DbSet<Order> Orders { get; set; } = null!;
-        public DbSet<PersonalDeliveryInformation> PersonalDeliveryInformation { get; set; } = null!;
+        public DbSet<DeliveryInformation> DeliveryInformation { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new OrderConfiguration());
-            builder.ApplyConfiguration(new ShippingAddressConfiguration());
-            builder.ApplyConfiguration(new PersonalDeliveryInformationConfiguration());
+            builder.ApplyConfiguration(new DeliveryInformationConfiguration());
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new AddressConfiguration());
             builder.ApplyConfiguration(new ApplicationUserConfiguration());

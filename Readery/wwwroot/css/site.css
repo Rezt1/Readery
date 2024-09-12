@@ -66,6 +66,10 @@ img{
     cursor: pointer;
 }
 
+.hover-arrow > div{
+    cursor: pointer;
+}
+
 .btn-remove {
     background: none;
     border: none;

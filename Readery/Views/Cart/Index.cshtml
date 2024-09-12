@@ -36,7 +36,7 @@
                         </td>
                         <td class="align-text-bottom">€@(item.Price * item.Quantity)</td>
                         <td class="align-text-bottom">
-                            <form asp-area="" asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@item.BookId">
+                            <form asp-area="" asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@item.BookId" method="post">
                                 <button class="btn-remove" type="submit">X</button>
                             </form>
                         </td>
@@ -52,11 +52,9 @@
         <a asp-area="" asp-controller="Book" asp-action="All">Go Back to Shopping</a>
         <div>
             <p class="mb-4">Total Price: €@Model.TotalPrice</p>
-            <form asp-area="" asp-controller="Order" asp-action="Index">
-                <button class="btn btn-primary" type="submit">
-                    <span class="me-2">Proceed</span> <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
+            <a asp-area="" asp-controller="Order" asp-action="Index" class="btn btn-primary" >
+                <span class="me-2">Proceed</span> <i class="fa-solid fa-arrow-right"></i>  
+            </a>
         </div>
     </div>
 }
