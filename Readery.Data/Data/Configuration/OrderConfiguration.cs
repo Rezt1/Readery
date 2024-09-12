@@ -9,9 +9,9 @@ namespace Readery.Domain.Data.Configuration
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder
-                .HasOne(o => o.ShippingAddress)
-                .WithMany(sa => sa.Orders)
-                .HasForeignKey(o => o.ShippingAddressId)
+                .HasOne(o => o.DeliveryInformation)
+                .WithMany(di => di.Orders)
+                .HasForeignKey(o => o.DeliveryInformationId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder

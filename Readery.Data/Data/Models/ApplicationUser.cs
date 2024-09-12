@@ -10,9 +10,7 @@ namespace Readery.Domain.Data.Models
         [ForeignKey(nameof(AuthorId))]
         public Author? Author { get; set; }
 
-        public ICollection<ShippingAddress> ShippingAddresses { get; set; } = new List<ShippingAddress>();
-
-        public ICollection<PersonalDeliveryInformation> PersonalDeliveryInformation { get; set; } = new List<PersonalDeliveryInformation>();
+        public ICollection<DeliveryInformation> DeliveryInformation { get; set; } = new List<DeliveryInformation>();
 
         public ICollection<Order> Orders { get; set; } = new List<Order>();
     }

@@ -22,7 +22,7 @@ namespace Readery.Domain.Data.Common
                 .AsNoTracking();
         }
 
-        public async Task<T?> GetByIdAsync<T>(int id) where T : class
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
             return await GetDbSet<T>().FindAsync(id);
         }
