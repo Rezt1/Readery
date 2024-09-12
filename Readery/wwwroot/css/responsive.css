@@ -9,4 +9,8 @@
     .pd-mb-res{
         margin-bottom: 3em;
     }
+
+    .mt-res{
+        margin-top: 6em !important;
+    }
 }

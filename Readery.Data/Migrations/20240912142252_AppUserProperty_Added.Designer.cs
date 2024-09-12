@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Readery.Domain.Data;
 
@@ -11,9 +12,10 @@ using Readery.Domain.Data;
 namespace Readery.Domain.Migrations
 {
     [DbContext(typeof(ReaderyDbContext))]
-    partial class ReaderyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240912142252_AppUserProperty_Added")]
+    partial class AppUserProperty_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,18 +264,18 @@ namespace Readery.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e891fc9a-c15a-4292-bdd1-d19a4fcde9e1"),
+                            Id = new Guid("b6a05ce3-9966-451e-afaa-eeed165c7741"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cf6d0fa6-647a-485a-9635-40dc0b37cf20",
+                            ConcurrencyStamp = "f5d982d9-faa4-48ac-9e8b-dd4544cc4171",
                             Email = "common1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "COMMON1@GMAIL.COM",
                             NormalizedUserName = "COMMON",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN7NSKYUdBIxIwrE51Jy3YW5WK0HKMcYFgCPcSlobn9oga/Od0mKYA3EyBl3DtsCxQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEObStTby12A1+hVc6LAvPLY0iGZYiqEB/QMlYYV5nNHzLeDx78HrjKK+Gfajf2n3lw==",
                             PhoneNumberConfirmed = false,
                             RememberDeliveryInfo = false,
-                            SecurityStamp = "b9fe52a2-819a-4ecc-aced-02f41aebb257",
+                            SecurityStamp = "7ea98a12-1287-4b96-8838-cf9ff1e3d93b",
                             TwoFactorEnabled = false,
                             UserName = "Common"
                         },
@@ -282,16 +284,16 @@ namespace Readery.Domain.Migrations
                             Id = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
                             AccessFailedCount = 0,
                             AuthorId = 1,
-                            ConcurrencyStamp = "659ab3c5-55fd-453c-bfd0-0104f41ba1f2",
+                            ConcurrencyStamp = "e6e4c91d-8e7d-4d65-ad69-8ebe7a1fa9ef",
                             Email = "author1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@GMAIL.COM",
                             NormalizedUserName = "AUTHOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK9kdCfDrcFnEW7HEV/VxeWf3nzxsrCy9SzPbOP0JTjzXsou8iIAbOk6jthfqHA/4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED5fRlcs/qNOzBZn3ROJyBhcUjUrwM4PmVjIjjQCfdU7iw3b6gpOhc7xwp5g2DmCFA==",
                             PhoneNumberConfirmed = false,
                             RememberDeliveryInfo = false,
-                            SecurityStamp = "7fc6231c-592c-4531-976c-ac8152c878d7",
+                            SecurityStamp = "4fb2e880-a521-463d-8329-3df87dd788a0",
                             TwoFactorEnabled = false,
                             UserName = "Author"
                         });
@@ -404,7 +406,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2024, 9, 13, 0, 44, 16, 271, DateTimeKind.Local).AddTicks(3368),
+                            AddedOn = new DateTime(2024, 9, 12, 17, 22, 52, 394, DateTimeKind.Local).AddTicks(3985),
                             AuthorId = 1,
                             Description = "Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokouji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?",
                             ImagePath = "images/books/cote1.jpg",
@@ -419,7 +421,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2024, 9, 13, 0, 44, 16, 271, DateTimeKind.Local).AddTicks(3409),
+                            AddedOn = new DateTime(2024, 9, 12, 17, 22, 52, 394, DateTimeKind.Local).AddTicks(4022),
                             AuthorId = 1,
                             Description = "Having survived their final exams, Ayanokouji and the others are looking forward to an idyllic school-sponsored summer vacation aboard a cruise ship. But nothing is ever quite as it seems with the Tokyo Advanced Nurturing High School, and the cruise turns out to be the cover for a series of special tests! What grueling new challenges await them out at sea?!",
                             ImagePath = "images/books/cote3.jpg",
@@ -434,7 +436,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2024, 9, 13, 0, 44, 16, 271, DateTimeKind.Local).AddTicks(3420),
+                            AddedOn = new DateTime(2024, 9, 12, 17, 22, 52, 394, DateTimeKind.Local).AddTicks(4033),
                             AuthorId = 1,
                             Description = "There’s upheaval in the air as another special exam approaches and Nagumo officially replaces Horikita Manabu as student council president. Meanwhile, Ryuuen is out for blood, and he’s set his sights on Horikita Suzune as the next possible candidate for Class D’s mysterious mastermind!",
                             ImagePath = "images/books/cote6.jpg",
@@ -449,7 +451,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2024, 9, 13, 0, 44, 16, 271, DateTimeKind.Local).AddTicks(3425),
+                            AddedOn = new DateTime(2024, 9, 12, 17, 22, 52, 394, DateTimeKind.Local).AddTicks(4037),
                             AuthorId = 1,
                             Description = "The third semester kicks off in high gear with a special boot camp deep in the mountains. Forcibly separated into groups along grade and gender lines, the first, second and third years alike must work together to survive the rugged terrain. Even worse? The leader of the group that comes in last will be expelled. Can Class D make it back to campus intact, or is this where they finally say goodbye to one of their own?",
                             ImagePath = "images/books/cote8.jpg",
@@ -580,9 +582,6 @@ namespace Readery.Domain.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");

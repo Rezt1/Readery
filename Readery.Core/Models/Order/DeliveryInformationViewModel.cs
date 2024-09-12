@@ -7,8 +7,6 @@ namespace Readery.Core.Models.Order
 {
     public class DeliveryInformationViewModel
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = RequiredMessage)]
         [StringLength(FirstNameMaxLength,
             MinimumLength = FirstNameMinLength,
@@ -52,6 +50,8 @@ namespace Readery.Core.Models.Order
             ErrorMessage = InvalidLengthMessage)]
         [Display(Name = "Zip")]
         public string ZipCode { get; set; } = string.Empty;
+
+        public bool RememberDeliveryInfo { get; set; }
 
         [Required(ErrorMessage = RequiredMessage)]
         [Display(Name = "Country")]

@@ -54,6 +54,7 @@ namespace Readery.Domain.Data.Configuration
                 NormalizedEmail = "COMMON1@GMAIL.COM",
                 ConcurrencyStamp = Guid.NewGuid().ToString(),
                 SecurityStamp = Guid.NewGuid().ToString(),
+                RememberDeliveryInfo = false
             };
 
             AuthorUser = new ApplicationUser()
@@ -65,6 +66,7 @@ namespace Readery.Domain.Data.Configuration
                 NormalizedEmail = "AUTHOR@GMAIL.COM",
                 ConcurrencyStamp = Guid.NewGuid().ToString(),
                 SecurityStamp = Guid.NewGuid().ToString(),
+                RememberDeliveryInfo = false
             };
 
             var passwordHasher = new PasswordHasher<ApplicationUser>();
