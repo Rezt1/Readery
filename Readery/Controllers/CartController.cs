@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Readery.Core.Contracts;
+using Readery.Core.Models.Order;
 using Readery.Extenstions;
 using Readery.Models.Cart;
 
@@ -74,6 +75,16 @@ namespace Readery.Controllers
             }
 
             cart.Items.Remove(item);
+
+            if (!cart.Items.Any())
+            {
+                var deliveryInfo = HttpContext.Session.GetObjectFromJson<DeliveryInformationViewModel>(nameof(DeliveryInformationViewModel));
+
+                if (deliveryInfo != null)
+                {
+                    HttpContext.Session.Remove(nameof(DeliveryInformationViewModel));
+                }
+            }
 
             HttpContext.Session.SetObjectAsJson(nameof(Cart), cart);
 
