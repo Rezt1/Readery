@@ -1,7 +1,114 @@
 ﻿@model SummaryViewModel
 
+@{
+    ViewData["Title"] = "Order";
+    var country = Model.DeliveryInformation.Countries.Find(c => c.Id == Model.DeliveryInformation.CountryId)?.Name;
+}
 
-<h1>HELOOOOOOOOOOOOOOOOO</h1>
-<form asp-controller="Order" asp-action="SummaryPost" method="post">
-    <button type="submit">Press me!</button>
-</form>
+<div class="pt-1" style="margin-bottom: 6em">
+    <div class="bg-white mx-auto position-relative" style="width: 85%">
+
+        <h3 class="position-absolute text-nowrap" style="left: 0; top: -1.7em">
+            <span class="num-element">1</span> Books
+        </h3>
+
+        <table class="table mt-5 mb-5 shadow" style="">
+            <thead>
+                <tr>
+                    <th scope="col" style="padding-left: 1.5em">Book</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cart.Items)
+                {
+                    <tr>
+                        <th class="d-flex align-items-center gap-3" scope="row">
+                            <div style="max-width: 4.5rem;">
+                                <img src="~/@item.ImagePath" />
+                            </div>
+                            <label>@item.BookTitle</label>
+                        </th>
+                        <td class="align-text-bottom">
+                            <label style="padding-left: 1.9em">
+                                <span>@item.Quantity</span>
+                            </label>
+                        </td>
+                        <td class="align-text-bottom">
+                            <label>€@(item.Price * item.Quantity)</label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row g-5 justify-content-between mx-auto" style="width: 85%">
+
+    <div class="col-md-6 shadow p-5 h-100 bg-white position-relative" style="">
+        
+        <h3 class="position-absolute text-nowrap" style="left: 0; top: -1.7em">
+            <span class="num-element">2</span> Delivery Information
+        </h3>
+
+        <h6 class="fw-bold mb-3">@Model.DeliveryInformation.FirstName @Model.DeliveryInformation.LastName</h6>
+        <p class="mb-1">@Model.DeliveryInformation.Email</p>
+        <p>@Model.DeliveryInformation.PhoneNumber</p>
+
+        <hr />
+
+        <p class="mb-1">@Model.DeliveryInformation.Street</p>
+        <p class="mb-1">@Model.DeliveryInformation.City @Model.DeliveryInformation.ZipCode</p>
+        <div class="d-flex justify-content-between">
+            <p>@country</p>
+            <a asp-area="" asp-controller="Order" asp-action="Index">Change details</a>
+        </div>
+
+    </div>
+
+    <div class="col-md-5 shadow p-4 h-100 bg-white position-relative mt-res">
+
+        <h3 class="position-absolute text-nowrap" style="left: 0; top: -1.7em">
+            <span class="num-element">3</span> Confirm
+        </h3>
+
+        <div class="d-flex justify-content-between mb-1">
+            <label>Delivery fee:</label>
+            <span>€0.00</span>
+        </div>
+
+        <div class="d-flex justify-content-between mb-3">
+            <label>Tax fee:</label>
+            <span>€0.00</span>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <h5 class="mb-0 fw-bold">Total price:</h5>
+            <span>€@Model.Cart.TotalPrice</span>
+        </div>
+
+        <hr />
+
+        <form asp-area="" asp-controller="Order" asp-action="SummaryPost" method="post">
+            <button class="btn btn-primary w-100 mt-4">Confirm order</button>
+        </form>
+    </div>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+</svg>
+
+<div class="alert alert-success d-flex align-items-end mb-0 pop-up-second d-none opacity-0" role="alert">
+    <svg class="me-2" role="img" aria-label="Success:" style="width: 1.5rem; height: 1.5rem"><use xlink:href="#check-circle-fill" /></svg>
+    <p class="">Updated information</p>
+</div>
+
+
+@section Scripts{
+   <script src="~/js/summary.js"></script>
+}

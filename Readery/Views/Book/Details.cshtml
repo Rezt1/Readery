@@ -4,43 +4,46 @@
     ViewData["Title"] = Model.Title;
 }
 
-<div class="card w-75 font-monospace ">
-    <div class="row g-0">
-        <div class="col-4">
-            <img src="~/@Model.ImagePath" class="w-100 h-100 p-2" alt="...">
-        </div>
-        <div class="col-8">
-            <div class="card-body">
+<div class="card-center-res">
+    <div class="card font-monospace base-border shadow" style="width: 80%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="~/@Model.ImagePath" class="w-100 h-100 p-2" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" >
 
-                <h3 class="card-title mb-4">@Model.Title</h3>
-                <p class="card-text p-2">Language: @Model.Language</p>
-                <p class="card-text p-2">Price: €@Model.Price</p>
-                <p class="card-text p-2">Pages: @Model.PagesCount</p>
-                <p class="card-text p-2">
-                    <small class="text-secondary">Written by @Model.AuthorName on @Model.WrittenOn.Day/@Model.WrittenOn.Month/@Model.WrittenOn.Year</small>
-                </p>
-                <h5 class="card-text text-center mt-4 fst-italic">DESCRIPTION</h5>
-                @if (Model.ShortDescription.Length < Model.FullDescription.Length)
-                {
-                    <p class="card-text fst-italic">@Model.ShortDescription <a href="#full-description" class="text-decoration-none">read more...</a></p>
-                }
-                else
-                {
-                    <p class="card-text fst-italic">@Model.ShortDescription</p>
-                }
+                    <h3 class="card-title mb-4">@Model.Title</h3>
+                    <p class="card-text p-2">Language: @Model.Language</p>
+                    <p class="card-text p-2">Price: €@Model.Price</p>
+                    <p class="card-text p-2">Pages: @Model.PagesCount</p>
+                    <p class="card-text p-2">
+                        <small class="text-secondary">Written by @Model.AuthorName on @Model.WrittenOn.Day/@Model.WrittenOn.Month/@Model.WrittenOn.Year</small>
+                    </p>
+                    <h5 class="card-text text-center mt-4 fst-italic">DESCRIPTION</h5>
+                    @if (Model.ShortDescription.Length < Model.FullDescription.Length)
+                    {
+                        <p class="card-text fst-italic">@Model.ShortDescription <a href="#full-description" class="text-decoration-none">read more...</a></p>
+                    }
+                    else
+                    {
+                        <p class="card-text fst-italic">@Model.ShortDescription</p>
+                    }
 
-                <div class="text-end mt-3">
-                    <button id="addToCartBtn" data-book-id="@Model.Id" class="btn btn-primary">Add to Cart</button>
+                    <div class="text-end mt-3">
+                        <button id="addToCartBtn" data-book-id="@Model.Id" class="btn btn-primary">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <div class="row mt-5 mb-5 font-monospace">
-    <div class="col-4">
+    <div class="col-md-4 pd-mb-res">
         <h5 class="fw-bold text-center">AUTHOR</h5>
-        <div class="card">
+        <div class="card base-border shadow">
             <div class="card-body">
                 <h5 class="card-title fw-bold">@Model.AuthorName</h5>
                 <p class="card-text p-2"><b>AGE:</b> @Model.Author.Age years old</p>
@@ -48,10 +51,10 @@
             </div>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <h5 class="fw-bold text-center">PUBLISHER</h5>
         <div class="card">
-            <div class="card-body">
+            <div class="card-body base-border shadow">
                 <h5 class="card-title fw-bold">@Model.Publisher.Name</h5>
                 <p class="card-text p-2"><b>CONTACT INFORMATION:</b> @Model.Publisher.Email, @Model.Publisher.PhoneNumber</p>
                 <p class="card-text p-2"><b>ADDRESS:</b> @Model.Publisher.Address.Street, @Model.Publisher.Address.City, @Model.Publisher.Address.Country</p>
@@ -68,4 +71,23 @@
         <p class="text-center mb-0 fst-italic">@Model.FullDescription</p>
         <hr />
     </div>
+}
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+</svg>
+
+<div class="alert alert-success d-flex align-items-end mb-0 d-none opacity-0 pop-up" role="alert">
+    <svg class="me-2" role="img" aria-label="Success:" style="width: 1.5rem; height: 1.5rem"><use xlink:href="#check-circle-fill" /></svg>
+    <div class="d-flex align-items-end gap-2">
+        <p>Added Item to Cart </p>
+        <button class="btn-remove" id="btn-close">X</button>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/details.js"></script>
 }

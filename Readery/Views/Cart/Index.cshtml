@@ -9,7 +9,7 @@
 
 @if (Model.Items.Any())
 {
-    <div class="w-75 mx-auto">
+    <div class="w-75 w-res mx-auto">
         <table class="table mt-5 mb-5">
             <thead>
                 <tr>
@@ -48,7 +48,7 @@
 
     <hr />
 
-    <div class="d-flex justify-content-between w-75 pt-3 mx-auto">
+    <div class="d-flex justify-content-between w-75 w-res pt-3 mx-auto">
         <a asp-area="" asp-controller="Book" asp-action="All">Go Back to Shopping</a>
         <div>
             <p class="mb-4">Total Price: €@Model.TotalPrice</p>
@@ -64,6 +64,14 @@ else
     <h5 class="text-center">
         <a asp-area="" asp-controller="Book" asp-action="All">Go and bring me something!!!</a>
     </h5>
+}
+
+@section Scripts{
+    <script>
+        $("form > .item").change(function () {
+            $(this).closest("form").submit();
+        })
+    </script>
 }
 
 

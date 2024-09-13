@@ -1,5 +1,8 @@
 ﻿@model DeliveryInformationViewModel
 
+@{
+    ViewData["Title"] = "Order";
+}
 
 <form asp-area="" asp-controller="Order" asp-action="Index" method="post" class="pt-5">
     <div class="row g-5 justify-content-evenly w-100 mx-auto" >
@@ -117,8 +120,6 @@
                     Remember delivery information
                 </label>
             </div>
-
-
         </div>
     </div>
 
@@ -128,12 +129,18 @@
         <button class="btn btn-primary" type="submit">
             <span class="me-2">Proceed to Summary</span> <i class="fa-solid fa-arrow-right"></i>
         </button>
-            
     </div>
 </form>
 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $("form").on("submit", function () {
+            sessionStorage.setItem("main", "checked")
+        })
+    </script>
 }
 
 

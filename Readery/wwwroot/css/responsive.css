@@ -13,4 +13,17 @@
     .mt-res{
         margin-top: 6em !important;
     }
+
+    .w-res{
+        width: 100% !important;
+    }
+
+    .card-center-res{
+        display: flex;
+        justify-content: center;
+    }
+
+    .pop-up {
+        background-color: rgba(209, 231, 221, 1);
+    }
 }
