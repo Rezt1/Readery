@@ -1,0 +1,46 @@
+﻿@model List<HistoryViewModel>
+
+@{
+    ViewData["Title"] = "Order history";
+    var leadingZero = "0";
+}
+
+<h2 class="text-center ">@ViewData["Title"]</h2>
+
+<hr />
+
+<div class="w-75 w-res mx-auto">
+    <table class="table mt-5 mb-5">
+        <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Total price</th>
+                <th scope="col">Created on</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th class="align-text-bottom" style="padding-left: 0.6em" scope="row">
+                        @item.Id
+                    </th>
+                    <td class="align-text-bottom">
+                        €@item.TotalPrice
+                    </td>
+                    <td class="align-text-bottom">
+                        @item.CreatedOn.Day/@item.CreatedOn.Month/@item.CreatedOn.Year @item.CreatedOn.Hour:@(item.CreatedOn.Minute >= 10 ? @item.CreatedOn.Minute : leadingZero + item.CreatedOn.Minute)
+                    </td>
+                    <td class="align-text-bottom">
+                        Completed
+                    </td>
+                    <td class="align-text-bottom text-center">
+                        <a asp-area="" asp-controller="Order" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">View details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

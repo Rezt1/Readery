@@ -77,5 +77,31 @@ namespace Readery.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> History()
+        {
+            var orders = await orderService.GetOrdersByUserAsync(User.Id());
+
+            return View(orders);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (!await orderService.ExistsAsync(id))
+            {
+                return NotFound();
+            }
+
+            if (!await orderService.IsByUserAsync(User.Id(), id))
+            {
+                return Unauthorized();
+            }
+
+            var orderDetails = await orderService.GetOrderDetailsAsync(id);
+
+            return View(orderDetails);
+        }
     }
 }
