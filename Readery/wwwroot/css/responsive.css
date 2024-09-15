@@ -27,3 +27,9 @@
         background-color: rgba(209, 231, 221, 1);
     }
 }
+
+@media (max-width: 450px){
+    .pop-up-thid-btn-w{
+        width: auto;
+    }
+}

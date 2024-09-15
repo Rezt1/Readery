@@ -11,6 +11,7 @@ $("#addToCartBtn").click(function () {
         success: function (response) {
  
             clearTimeout(removeAlertTimeout);
+            clearTimeout(removeDisplayTimeout);
 
             const divEl = $(".pop-up");
         
@@ -38,7 +39,7 @@ $("#addToCartBtn").click(function () {
     })
 })
 
-$("#btn-close").click((e) => {
+$("#btn-close").click(function(e) {
     e.target.parentElement.parentElement.classList.add("opacity-0");
 
     removeDisplayTimeout = setTimeout(() => {
