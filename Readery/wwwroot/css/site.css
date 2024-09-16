@@ -21,6 +21,7 @@ body {
 p {
     word-break: break-word;
     margin-bottom: 0;
+    font-size: 16px
 }
 
 img{

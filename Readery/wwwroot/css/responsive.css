@@ -2,6 +2,11 @@
    .di-c-mb-res{
        margin-bottom: 21px;
    }
+
+   .padding-side-res{
+       padding-left: 1em;
+       padding-right: 1em;
+   }
 }
 
 

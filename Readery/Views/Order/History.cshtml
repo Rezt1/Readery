@@ -31,7 +31,7 @@
                         €@item.TotalPrice
                     </td>
                     <td class="align-text-bottom">
-                        @item.CreatedOn.Day/@item.CreatedOn.Month/@item.CreatedOn.Year @item.CreatedOn.Hour:@(item.CreatedOn.Minute >= 10 ? @item.CreatedOn.Minute : leadingZero + item.CreatedOn.Minute)
+                        @item.CreatedOn.Day/@item.CreatedOn.Month/@item.CreatedOn.Year @(item.CreatedOn.Hour >= 10 ? item.CreatedOn.Hour : leadingZero + item.CreatedOn.Hour):@(item.CreatedOn.Minute >= 10 ? @item.CreatedOn.Minute : leadingZero + item.CreatedOn.Minute)
                     </td>
                     <td class="align-text-bottom">
                         Completed
