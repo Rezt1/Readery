@@ -5,7 +5,7 @@ namespace Readery.Core.Contracts
 {
     public interface IBookService
     {
-        public Task<List<BasicBookViewModel>> GetAllBooksAsync();
+        public Task<PaginationBookViewModel> GetAllBooksAsync(int id, string searchTerm);
 
         public Task<DetailsViewModel> GetBookDetailsAsync(int id);
 

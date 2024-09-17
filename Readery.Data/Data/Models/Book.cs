@@ -8,10 +8,10 @@ namespace Readery.Domain.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(100)]
         public string Title { get; set; } = string.Empty;
 
-        [Required, MaxLength(500)]
+        [Required, MaxLength(1000)]
         public string Description { get; set; } = string.Empty;
 
         [Required]

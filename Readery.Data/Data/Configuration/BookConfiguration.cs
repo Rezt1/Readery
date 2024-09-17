@@ -15,7 +15,7 @@ namespace Readery.Domain.Data.Configuration
                 .OnDelete(DeleteBehavior.NoAction);
 
             var seeder = new DataSeeder();
-            builder.HasData(new[] { seeder.Book1, seeder.Book2, seeder.Book3, seeder.Book4 });
+            builder.HasData(new[] { seeder.Book1, seeder.Book2, seeder.Book3, seeder.Book4, seeder.Book5, seeder.Book6, seeder.Book7, seeder.Book8, seeder.Book9, seeder.Book10 });
         }
     }
 }

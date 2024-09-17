@@ -12,7 +12,7 @@
 </head>
 <body>
     <header id="body-header">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed-top bg-white navbar-light border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Readery</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,22 +20,39 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="All">Books</a>
                         </li>
+                        <li class="nav-item search-li-big-screen" >
+                            <form asp-area="" asp-controller="Book" asp-action="All" method="get" class="d-flex position-relative" role="search">
+                                <input class="form-control no-outline" type="search" name="searchTerm" placeholder="Search" aria-label="Search" style="border-radius: 15px">
+                                <button class="search-btn" type="submit" >
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </form>
+                        </li>
                     </ul>
+
                     <partial name="_LoginPartial" />
+
+                    <form asp-area="" asp-controller="Book" asp-action="All" method="get" class="d-flex position-relative search-small-screen" role="search">
+                        <input class="form-control no-outline" type="search" name="searchTerm" placeholder="Search" aria-label="Search" style="border-radius: 15px">
+                        <button class="search-btn" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
     </header>
 
     <div class="container">
-        <main role="main" class="mt-5 pb-5">
+        <main role="main" class="pb-5" style="margin-top: 6.5em">
             @RenderBody()
         </main>
     </div>

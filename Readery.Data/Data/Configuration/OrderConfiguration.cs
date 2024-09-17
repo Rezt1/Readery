@@ -17,8 +17,7 @@ namespace Readery.Domain.Data.Configuration
             builder
                .HasOne(o => o.User)
                .WithMany(u => u.Orders)
-               .HasForeignKey(o => o.UserId)
-               .OnDelete(DeleteBehavior.NoAction);
+               .HasForeignKey(o => o.UserId);
         }
     }
 }
