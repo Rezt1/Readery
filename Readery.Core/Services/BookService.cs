@@ -26,10 +26,20 @@ namespace Readery.Core.Services
                 .AnyAsync(b => b.Id == id);
         }
 
-        public async Task<List<BasicBookViewModel>> GetAllBooksAsync()
+        public async Task<PaginationBookViewModel> GetAllBooksAsync(int page, string searchTerm)
         {
-            return await repository.GetAllReadOnly<Book>()
-                .Where(b => b.IsRemoved == false)
+            int booksPerPage = 8;
+
+            var model = new PaginationBookViewModel();
+            model.TotalPages = (int)Math.Ceiling(await repository.GetAllReadOnly<Book>().Where(b => b.Title.ToLower().Contains(searchTerm.ToLower())).CountAsync() / (double)booksPerPage);
+            model.CurrentPage = page;
+            model.PageExists = page > 0 && page <= model.TotalPages;
+
+            model.Books = await repository.GetAllReadOnly<Book>()
+                .Where(b => b.IsRemoved == false && b.Title.ToLower().Contains(searchTerm.ToLower()))
+                .OrderByDescending(b => b.AddedOn)
+                .Skip((page - 1) * booksPerPage)
+                .Take(booksPerPage)
                 .Select(b => new BasicBookViewModel()
                 {
                     Id = b.Id,
@@ -40,6 +50,8 @@ namespace Readery.Core.Services
                     Price = b.Price
                 })
                 .ToListAsync();
+
+            return model;
         }
 
         public async Task<DetailsViewModel> GetBookDetailsAsync(int id)
@@ -95,11 +107,11 @@ namespace Readery.Core.Services
 
         public async Task<CartItemViewModel> GetCartBookById(int id)
         {
-            var book = await repository.GetByIdAsync<Book>(id) ?? new Book(); // it can't be null so new Book won't be returned ever
+            var book = await repository.GetByIdAsync<Book>(id);
 
             return new CartItemViewModel()
             {
-                BookId = book.Id,
+                BookId = book!.Id,
                 BookTitle = book.Title,
                 ImagePath = book.ImagePath,
                 Price = book.Price,

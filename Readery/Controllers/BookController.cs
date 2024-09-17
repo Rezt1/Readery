@@ -12,13 +12,22 @@ namespace Readery.Controllers
             bookService = _bookService;
         }
 
-        public async Task<IActionResult> All()
+        [HttpGet]
+        public async Task<IActionResult> All(int page = 1, string searchTerm = "")
         {
-            var books = await bookService.GetAllBooksAsync();
+            var paginationModel = await bookService.GetAllBooksAsync(page, searchTerm);
 
-            return View(books);
+            if (paginationModel.TotalPages != 0 && !paginationModel.PageExists)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            ViewData["PageTitle"] = "Latest added books";
+
+            return View(paginationModel);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             if (!await bookService.ExistsById(id))

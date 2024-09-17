@@ -1,26 +1,126 @@
-﻿@model List<BasicBookViewModel>
+﻿@model PaginationBookViewModel
 
 @{
     ViewData["Title"] = "Books";
+    bool hasPreviousPage = Model.CurrentPage > 1;
+    bool hasNextPage = Model.CurrentPage < Model.TotalPages;
+    int pageRange = 2;
 }
 
-<div class="row justify-content-evenly">
-	@foreach(var book in Model)
+<h2 class="text-center">@ViewData["PageTitle"]</h2>
+
+<hr />
+
+<div class="row mx-auto w-res mt-5" style="width: 85%">
+	@foreach(var book in Model.Books)
 	{
-        <div class="col col-2">
-            <a asp-area="" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" style="text-decoration: none; color: inherit">
-                <div class="card">
+        <div class="col-lg-3 col-sm-6 d-flex justify-content-center mb-5">
+            <div class="card base-border shadow card-hover" style="max-width: 200px">
+                <a asp-area="" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" style="text-decoration: none; color: inherit">
                     <img src="~/@book.ImagePath" class="card-img-top" alt="Image">
                     <div class="card-body">
-                        <h5 class="card-title">@book.Title</h5>
+                        <h6 class="card-title fw-bold" >@book.Title</h6>
                         <p class="card-text">Language: @book.Language</p>
                         <p class="card-text">Price: €@book.Price</p>
                         <p class="card-text">
                             <small class="text-body-secondary">Author: @book.AuthorName</small>
                         </p>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
 	}
 </div>
+
+<nav class="mt-3">
+    <ul class="pagination justify-content-sm-end justify-content-center gap-2 flex-wrap">
+
+        @if (hasPreviousPage)
+        {
+            <li class="page-item">
+                <a asp-area="" asp-controller="Book" asp-action="All" asp-route-page="@(Model.CurrentPage - 1)" class="page-link" >Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+        }
+
+        @if (Model.CurrentPage != 1)
+        {
+            <li class="page-item">
+                <a asp-area="" asp-controller="Book" asp-action="All" asp-route-page="1" class="page-link">1</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item active">
+                <span class="page-link">1</span>
+            </li>
+        }
+
+        @if (Model.CurrentPage - pageRange > 2)
+        {
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+        }
+
+        @for (int i = Model.CurrentPage - pageRange; i <= Model.CurrentPage + pageRange; i++)
+        {
+            if (i > 1 && i < Model.TotalPages)
+            {
+                if (i != Model.CurrentPage)
+                {
+                    <li class="page-item">
+                        <a asp-area="" asp-controller="Book" asp-action="All" asp-route-page="@i" class="page-link">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item active">
+                        <span class="page-link">@i</span>
+                    </li>
+                }
+            }
+        }
+
+        @if (Model.CurrentPage + pageRange < Model.TotalPages - 1)
+        {
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+        }
+
+        @if (Model.TotalPages > 1)
+        {
+            @if (Model.CurrentPage != Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a asp-area="" asp-controller="Book" asp-action="All" asp-route-page="@Model.TotalPages" class="page-link">@Model.TotalPages</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item active">
+                    <span class="page-link">@Model.TotalPages</span>
+                </li>
+            }
+        }
+
+        @if (hasNextPage)
+        {
+            <li class="page-item">
+                <a asp-area="" asp-controller="Book" asp-action="All" asp-route-page="@(Model.CurrentPage + 1)" class="page-link">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+        }
+    </ul>
+</nav>

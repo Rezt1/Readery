@@ -1,0 +1,135 @@
+﻿@model OrderDetailsViewModel
+
+@{
+	ViewData["Title"] = "Order details";
+	var leadingZero = "0";
+}
+
+<div class="row w-100 mx-auto justify-content-center mb-5 pt-5 padding-side-res">
+	
+	<div class="col-md-7 p-3 bg-white base-border shadow position-relative">
+
+		<h3 class="position-absolute text-nowrap" style="left: 0; top: -1.7em" >Order no. @Model.Id</h3>
+
+		<section>
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">Status: </span>
+				completed
+			</p>
+
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">Date of order: </span>
+				@Model.CreatedOn.Day/@Model.CreatedOn.Month/@Model.CreatedOn.Year @(Model.CreatedOn.Hour >= 10 ? Model.CreatedOn.Hour : leadingZero + Model.CreatedOn.Hour):@(Model.CreatedOn.Minute >= 10 ? @Model.CreatedOn.Minute : leadingZero + Model.CreatedOn.Minute)
+			</p>
+
+			<p>
+				<span class="h5 fw-bold me-2">Date of completion: </span>
+				@Model.CreatedOn.Day/@Model.CreatedOn.Month/@Model.CreatedOn.Year @(Model.CreatedOn.Hour >= 10 ? Model.CreatedOn.Hour : leadingZero + Model.CreatedOn.Hour):@(Model.CreatedOn.Minute >= 10 ? @Model.CreatedOn.Minute : leadingZero + Model.CreatedOn.Minute)
+			</p>
+		</section>
+	
+		<hr />
+
+		<section>
+
+			<h4 class="text-decoration-underline mb-3">Personal infomration</h4>
+
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">Full name:</span>  
+				@Model.FirstName @Model.LastName
+			</p>
+
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">Email:</span>
+				@Model.Email
+			</p>
+
+			<p class="">
+				<span class="h5 fw-bold me-2">Phone number:</span>
+				@Model.PhoneNumber
+			</p>
+		</section>
+		
+		<hr />
+
+		<section>
+
+			<h4 class="text-decoration-underline mb-3">Shipped to</h4>
+
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">Street:</span>
+				@Model.Street
+			</p>
+
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">City:</span>
+				@Model.City
+			</p>
+
+			<p class="mb-1">
+				<span class="h5 fw-bold me-2">Zip code:</span>
+				@Model.ZipCode
+			</p>
+
+			<p class="">
+				<span class="h5 fw-bold me-2">Country:</span>
+				@Model.Country
+			</p>
+		</section>
+	</div>
+</div>
+
+<div class="pt-1">
+	<div class="bg-white mx-auto position-relative w-res" style="width: 85%">
+
+		<h3 class="position-absolute text-nowrap" style="left: 0; top: -1.7em">Your order contains:</h3>
+
+		<table class="table mt-5 mb-5 shadow-lg" style="">
+			<thead>
+				<tr>
+					<th scope="col" style="padding-left: 1.5em">Book</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.items)
+				{
+					<tr>
+						<th class="d-flex align-items-center gap-3" scope="row">
+							<div style="max-width: 4.5rem;">
+								<img src="~/@item.ImagePath" />
+							</div>
+							<label>@item.BookTitle</label>
+						</th>
+						<td class="align-text-bottom">
+							<label style="padding-left: 1.9em">
+								<span>@item.Quantity</span>
+							</label>
+						</td>
+						<td class="align-text-bottom">
+							<label>€@(item.Price * item.Quantity)</label>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="shadow-lg p-3 bg-white mx-auto w-res" style="width: 75%">
+	<div class="d-flex justify-content-between mb-1">
+		<h5>Delivery fee:</h5>
+		<span>€0.00</span>
+	</div>
+
+	<div class="d-flex justify-content-between mb-3">
+		<h5>Tax fee:</h5>
+		<span>€0.00</span>
+	</div>
+
+	<div class="d-flex justify-content-between">
+		<h4 class="mb-0 fw-bold">Total price:</h4>
+		<span>€@Model.TotalPrice</span>
+	</div>
+</div>

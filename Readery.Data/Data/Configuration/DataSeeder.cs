@@ -33,7 +33,19 @@ namespace Readery.Domain.Data.Configuration
 
         internal Book Book4 { get; set; } = null!;
 
-        public DataSeeder()
+		internal Book Book5 { get; set; } = null!;
+
+		internal Book Book6 { get; set; } = null!;
+
+		internal Book Book7 { get; set; } = null!;
+
+		internal Book Book8 { get; set; } = null!;
+
+		internal Book Book9 { get; set; } = null!;
+
+		internal Book Book10 { get; set; } = null!;
+
+		public DataSeeder()
         {
             SeedApplicationUsers();
             SeedCountries();
@@ -179,7 +191,7 @@ namespace Readery.Domain.Data.Configuration
                 PagesCount = 280,
                 Price = 27.00m,
                 IsRemoved = false,
-                WrittenOn = new DateTime(2017, 5, 10),
+                WrittenOn = new DateTime(2021, 4, 15),
                 AddedOn = DateTime.Now,
                 AuthorId = Author.Id,
                 PublisherId = Publisher.Id,
@@ -195,7 +207,7 @@ namespace Readery.Domain.Data.Configuration
                 PagesCount = 445,
                 Price = 35.00m,
                 IsRemoved = false,
-                WrittenOn = new DateTime(2008, 6, 16),
+                WrittenOn = new DateTime(2021, 8, 17),
                 AddedOn = DateTime.Now,
                 AuthorId = Author.Id,
                 PublisherId = Publisher.Id,
@@ -211,11 +223,107 @@ namespace Readery.Domain.Data.Configuration
                 PagesCount = 415,
                 Price = 35.50m,
                 IsRemoved = false,
-                WrittenOn = new DateTime(2008, 6, 16),
+                WrittenOn = new DateTime(2021, 12, 14),
                 AddedOn = DateTime.Now,
                 AuthorId = Author.Id,
                 PublisherId = Publisher.Id,
             };
-        }
+
+            Book5 = new Book()
+            {
+                Id = 5,
+                Title = "Classroom of the elite: Year 2 (Light Novel) Vol. 2",
+                Description = "Ayanokouji’s relationship with Karuizawa deepens, while the aftershock of his perfect mathematics score ripples through the school. Horikita asks to join the student council, and is accepted by Nagumo. And summer vacation brings with it no rest, but another special exam–a reprise of the earlier deserted island test. Except this time, it’ll be a battle royale with all three grade levels duking it out against each other!",
+				ImagePath = "images/books/cote-y2-2.jpg",
+				Language = "en",
+				PagesCount = 330,
+				Price = 33.50m,
+				IsRemoved = false,
+				WrittenOn = new DateTime(2023, 5, 16),
+				AddedOn = DateTime.Now,
+				AuthorId = Author.Id,
+				PublisherId = Publisher.Id,
+			};
+
+			Book6 = new Book()
+			{
+				Id = 6,
+				Title = "Classroom of the elite: Year 2 (Light Novel) Vol. 3",
+				Description = "The special exam on an uninhabited island has begun! For two weeks, students will do their best to visit checkpoints and complete challenges to gain points with their groups. Well, except for Ayanokouji, who has opted to tackle this exam on his own… or has he? Nanase, a first-year student from Class D, breaks off from her own group and asks to tag along with him, but there doesn’t seem to be anything in it for her. Just what is this under-classman’s goal?",
+				ImagePath = "images/books/cote-y2-3.jpg",
+				Language = "en",
+				PagesCount = 338,
+				Price = 35.10m,
+				IsRemoved = false,
+				WrittenOn = new DateTime(2023, 7, 15),
+				AddedOn = DateTime.Now,
+				AuthorId = Author.Id,
+				PublisherId = Publisher.Id,
+			};
+
+			Book7 = new Book()
+			{
+				Id = 7,
+				Title = "Classroom of the elite (Light Novel) Vol. 2",
+				Description = "Class D has conquered the midterms, but their celebration is cut short when three Class C students falsely accuse Sudou of assaulting them! With their friend facing expulsion, and the class’s points on the line, Ayanokouji, Horikita, and Kikyou must team up to gather evidence to prove his innocence.",
+				ImagePath = "images/books/cote2.jpg",
+				Language = "en",
+				PagesCount = 352,
+				Price = 37.20m,
+				IsRemoved = false,
+				WrittenOn = new DateTime(2021, 1, 10),
+				AddedOn = DateTime.Now,
+				AuthorId = Author.Id,
+				PublisherId = Publisher.Id,
+			};
+
+			Book8 = new Book()
+			{
+				Id = 8,
+				Title = "Classroom of the elite (Light Novel) Vol. 7.5",
+				Description = "School may be on vacation, but the scheming never stops! Christmas draws near, and Karuizawa and Satou compete for Ayanokouji’s affections while new student council president Nagumo makes his first sinister moves. Don’t miss this bonus volume of short stories, covering the events of a winter break that will decide the balance of power in the upcoming third semester!",
+				ImagePath = "images/books/cote7-5.jpg",
+				Language = "en",
+				PagesCount = 352,
+				Price = 32.60m,
+				IsRemoved = false,
+				WrittenOn = new DateTime(2021, 10, 21),
+				AddedOn = DateTime.Now,
+				AuthorId = Author.Id,
+				PublisherId = Publisher.Id,
+			};
+
+			Book9 = new Book()
+			{
+				Id = 9,
+				Title = "Classroom of the elite (Light Novel) Vol. 9",
+				Description = "Sakayanagi puts her plan to crush Ichinose into motion, spreading rumors of her alleged war criminal history through the school like wildfire. With Class B at a loss, and Ichinose herself uncharacteristically reluctant to fight back, can Ayanokouji step in to save her reputation? Meanwhile, Kushida makes contact with student council president Nagumo in what might prove to be a very dangerous alliance, indeed.",
+				ImagePath = "images/books/cote9.jpg",
+				Language = "en",
+				PagesCount = 342,
+				Price = 33.20m,
+				IsRemoved = false,
+				WrittenOn = new DateTime(2022, 4, 29),
+				AddedOn = DateTime.Now,
+				AuthorId = Author.Id,
+				PublisherId = Publisher.Id,
+			};
+
+			Book10 = new Book()
+			{
+				Id = 10,
+				Title = "Classroom of the elite (Light Novel) Vol. 10",
+				Description = "It's spring, and for the first time in the school’s history, no one has been expelled after the third semester exams. As a result, the Advanced Nurturing High School sets a cruel test—each class must choose one of their own members to be expelled. Chaos consumes the first-years as Hirata tries and fails to keep the class from turning on each other, Ichinose strikes a costly bargain with Nagumo, and Ryuuen’s classmates seem ready to throw him to the wolves. Can Class C make it out of this unscathed—or will they be undone by traitors within?",
+				ImagePath = "images/books/cote10.jpg",
+				Language = "en",
+				PagesCount = 383,
+				Price = 39.20m,
+				IsRemoved = false,
+				WrittenOn = new DateTime(2022, 6, 11),
+				AddedOn = DateTime.Now,
+				AuthorId = Author.Id,
+				PublisherId = Publisher.Id,
+			};
+		}
     }
 }

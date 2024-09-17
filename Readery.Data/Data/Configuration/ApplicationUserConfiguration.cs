@@ -10,9 +10,14 @@ namespace Readery.Domain.Data.Configuration
         {
             builder.HasMany(au => au.DeliveryInformation)
                 .WithOne(di => di.User)
-                .HasForeignKey(di => di.UserId);
+                .HasForeignKey(di => di.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
 
-            var seeder = new DataSeeder();
+            builder.HasMany(au => au.Orders)
+                .WithOne(o => o.User)
+                .HasForeignKey(o => o.UserId);
+
+			var seeder = new DataSeeder();
             builder.HasData(new[] { seeder.CommonUser, seeder.AuthorUser });
         }
     }
