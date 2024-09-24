@@ -4,6 +4,7 @@ using Readery.Core.Services;
 using Readery.Domain.Data;
 using Readery.Domain.Data.Common;
 using Readery.Domain.Data.Models;
+using Readery.Filters;
 
 namespace Readery
 {
@@ -34,7 +35,10 @@ namespace Readery
                 //options.LogoutPath = "/Account/Logout";
             });
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new NoCacheAttribute());
+            });
             builder.Services.AddRazorPages();
 
             builder.Services.AddSession(options =>

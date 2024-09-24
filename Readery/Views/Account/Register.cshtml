@@ -4,31 +4,38 @@
     ViewData["Title"] = "Register";
 }
 
-<form class="w-50 m-auto" id="registerForm" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-    <h2 class="text-center">Create a new account.</h2>
+<form asp-controller="Account" asp-action="Register" class="base-border shadow login-width m-auto p-5" id="registerForm" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+
+    <h2 class="text-center">Create a new account</h2>
     <hr />
+
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-floating mb-3">
-        <input asp-for="UserName" class="form-control" aria-required="true" />
-        <label asp-for="UserName"></label>
+
+    <div class="mt-5 mb-4">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" placeholder="username" aria-required="true" />
         <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
-    <div class="form-floating mb-3">
-        <input asp-for="Email" class="form-control" aria-required="true" />
-        <label asp-for="Email"></label>
+
+    <div class="mb-4">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" placeholder="email@example.com" aria-required="true" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-    <div class="form-floating mb-3">
-        <input asp-for="Password" class="form-control" aria-required="true" />
-        <label asp-for="Password"></label>
+
+    <div class="mb-4">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" placeholder="secret password" aria-required="true" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <div class="form-floating mb-3">
-        <input asp-for="ConfirmPassword" class="form-control" aria-required="true" />
-        <label asp-for="ConfirmPassword"></label>
+
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" placeholder="copy of secret password" aria-required="true" />
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
-    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+
+    <button id="registerSubmit" type="submit" class="basic-btn w-100 mt-5">Register</button>
 </form>
 
 @section Scripts {

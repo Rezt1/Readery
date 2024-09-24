@@ -1,0 +1,54 @@
+﻿.base-border {
+    border: 1px solid black;
+}
+
+/*Order/index order/summary*/
+.num-element {
+    background-color: lightblue;
+    display: inline-block;
+    width: 1.2em;
+    border-radius: 50%;
+    text-align: center;
+}
+
+/*Book/details cart/index*/
+.btn-remove {
+    background: none;
+    border: none;
+    transition: opacity 0.1s ease-in-out
+}
+
+.btn-remove:hover {
+    opacity: 0.5;
+}
+
+form > .btn-remove {
+    color: red;
+}
+
+.no-outline:focus,
+.no-outline:focus-visible,
+.no-outline:active{
+    outline: none;
+    box-shadow: none;
+    border-color: initial; 
+}
+
+.basic-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: dodgerblue;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+}
+
+.basic-btn:hover{
+    color: white;
+    cursor: pointer;
+    filter: brightness(95%)
+}
+
+.basic-btn:active{
+    filter: brightness(90%)
+}

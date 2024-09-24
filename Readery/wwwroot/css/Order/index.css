@@ -1,0 +1,25 @@
+﻿.hover-arrow:hover {
+    cursor: pointer;
+}
+
+.hover-arrow > div {
+    cursor: pointer;
+}
+
+.input-after {
+    position: relative;
+}
+
+.input-after::after {
+    content: '*';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: dodgerblue;
+    font-size: 1.2em;
+}
+
+.form-check-input:checked{
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+}
