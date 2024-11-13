@@ -96,6 +96,13 @@ namespace Readery.Domain.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
+                            RoleId = new Guid("7e5291f4-1483-418d-92d2-7d35d9b6a7b0")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -195,6 +202,15 @@ namespace Readery.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("7e5291f4-1483-418d-92d2-7d35d9b6a7b0"),
+                            ConcurrencyStamp = "c7691ed8-80d9-4669-91a8-1db59fbb249d",
+                            Name = "Author",
+                            NormalizedName = "AUTHOR"
+                        });
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
@@ -262,18 +278,18 @@ namespace Readery.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("292df06d-b47d-44b6-806b-576f7c0cbe9f"),
+                            Id = new Guid("b0c2414c-071c-436f-b5de-1023739d90be"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "129889f5-febf-4108-a679-babd18d2ba96",
+                            ConcurrencyStamp = "c932491a-2c85-4bf9-8bed-e53bcb420c5c",
                             Email = "common1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "COMMON1@GMAIL.COM",
                             NormalizedUserName = "COMMON",
-                            PasswordHash = "AQAAAAEAACcQAAAAELpxxTFzc/vi3+MTluJhtc0JseluDUeRR9bmZRa4Buh4612Y6drF6QJ7Uu+dHcmasQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC6g4b9sEUbBSIqjDRCFY1iQ8pXFreGqKWmssDqHOd/ce8mHrKGtzBRNUWRSol237g==",
                             PhoneNumberConfirmed = false,
                             RememberDeliveryInfo = false,
-                            SecurityStamp = "2acfba32-fed6-44fc-8ad7-1873f4787d05",
+                            SecurityStamp = "89ede71f-126e-4c95-8ac0-83184c71aa3e",
                             TwoFactorEnabled = false,
                             UserName = "Common"
                         },
@@ -282,16 +298,16 @@ namespace Readery.Domain.Migrations
                             Id = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
                             AccessFailedCount = 0,
                             AuthorId = 1,
-                            ConcurrencyStamp = "5fc314bd-872a-43b0-84fb-ecfeb2f55cdb",
+                            ConcurrencyStamp = "0b3eaab2-7510-4832-8cf0-5d4753bf0147",
                             Email = "author1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@GMAIL.COM",
                             NormalizedUserName = "AUTHOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAECftGBiRWTbma/zdORhAptz6F9UDkrIR5V5VtVFbrau8Si08P5kRA8zMKE0ozHEYOQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM7WDFMxzAeFnkkhiEacdci44NpUKV2x9hnkpa7m1RsQTYOqp8ty20e8A1jULUmjzA==",
                             PhoneNumberConfirmed = false,
                             RememberDeliveryInfo = false,
-                            SecurityStamp = "cbe9e606-f350-4e42-befe-8d18922e072a",
+                            SecurityStamp = "939064c0-cd3b-4c2a-a879-91398287029a",
                             TwoFactorEnabled = false,
                             UserName = "Author"
                         });
@@ -404,7 +420,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1243),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8502),
                             AuthorId = 1,
                             Description = "Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokouji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?",
                             ImagePath = "images/books/cote1.jpg",
@@ -419,7 +435,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1262),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8534),
                             AuthorId = 1,
                             Description = "Having survived their final exams, Ayanokouji and the others are looking forward to an idyllic school-sponsored summer vacation aboard a cruise ship. But nothing is ever quite as it seems with the Tokyo Advanced Nurturing High School, and the cruise turns out to be the cover for a series of special tests! What grueling new challenges await them out at sea?!",
                             ImagePath = "images/books/cote3.jpg",
@@ -434,7 +450,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1265),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8537),
                             AuthorId = 1,
                             Description = "There’s upheaval in the air as another special exam approaches and Nagumo officially replaces Horikita Manabu as student council president. Meanwhile, Ryuuen is out for blood, and he’s set his sights on Horikita Suzune as the next possible candidate for Class D’s mysterious mastermind!",
                             ImagePath = "images/books/cote6.jpg",
@@ -449,7 +465,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1267),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8540),
                             AuthorId = 1,
                             Description = "The third semester kicks off in high gear with a special boot camp deep in the mountains. Forcibly separated into groups along grade and gender lines, the first, second and third years alike must work together to survive the rugged terrain. Even worse? The leader of the group that comes in last will be expelled. Can Class D make it back to campus intact, or is this where they finally say goodbye to one of their own?",
                             ImagePath = "images/books/cote8.jpg",
@@ -464,7 +480,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 5,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1269),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8543),
                             AuthorId = 1,
                             Description = "Ayanokouji’s relationship with Karuizawa deepens, while the aftershock of his perfect mathematics score ripples through the school. Horikita asks to join the student council, and is accepted by Nagumo. And summer vacation brings with it no rest, but another special exam–a reprise of the earlier deserted island test. Except this time, it’ll be a battle royale with all three grade levels duking it out against each other!",
                             ImagePath = "images/books/cote-y2-2.jpg",
@@ -479,7 +495,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 6,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1271),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8545),
                             AuthorId = 1,
                             Description = "The special exam on an uninhabited island has begun! For two weeks, students will do their best to visit checkpoints and complete challenges to gain points with their groups. Well, except for Ayanokouji, who has opted to tackle this exam on his own… or has he? Nanase, a first-year student from Class D, breaks off from her own group and asks to tag along with him, but there doesn’t seem to be anything in it for her. Just what is this under-classman’s goal?",
                             ImagePath = "images/books/cote-y2-3.jpg",
@@ -494,7 +510,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 7,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1274),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8554),
                             AuthorId = 1,
                             Description = "Class D has conquered the midterms, but their celebration is cut short when three Class C students falsely accuse Sudou of assaulting them! With their friend facing expulsion, and the class’s points on the line, Ayanokouji, Horikita, and Kikyou must team up to gather evidence to prove his innocence.",
                             ImagePath = "images/books/cote2.jpg",
@@ -509,7 +525,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 8,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1276),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8557),
                             AuthorId = 1,
                             Description = "School may be on vacation, but the scheming never stops! Christmas draws near, and Karuizawa and Satou compete for Ayanokouji’s affections while new student council president Nagumo makes his first sinister moves. Don’t miss this bonus volume of short stories, covering the events of a winter break that will decide the balance of power in the upcoming third semester!",
                             ImagePath = "images/books/cote7-5.jpg",
@@ -524,7 +540,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 9,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1279),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8559),
                             AuthorId = 1,
                             Description = "Sakayanagi puts her plan to crush Ichinose into motion, spreading rumors of her alleged war criminal history through the school like wildfire. With Class B at a loss, and Ichinose herself uncharacteristically reluctant to fight back, can Ayanokouji step in to save her reputation? Meanwhile, Kushida makes contact with student council president Nagumo in what might prove to be a very dangerous alliance, indeed.",
                             ImagePath = "images/books/cote9.jpg",
@@ -539,7 +555,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 10,
-                            AddedOn = new DateTime(2024, 9, 16, 23, 27, 16, 859, DateTimeKind.Local).AddTicks(1281),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8573),
                             AuthorId = 1,
                             Description = "It's spring, and for the first time in the school’s history, no one has been expelled after the third semester exams. As a result, the Advanced Nurturing High School sets a cruel test—each class must choose one of their own members to be expelled. Chaos consumes the first-years as Hirata tries and fails to keep the class from turning on each other, Ichinose strikes a costly bargain with Nagumo, and Ryuuen’s classmates seem ready to throw him to the wolves. Can Class C make it out of this unscathed—or will they be undone by traitors within?",
                             ImagePath = "images/books/cote10.jpg",

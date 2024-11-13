@@ -183,7 +183,7 @@ namespace Readery.Core.Services
         {
             var order = await repository.GetByIdAsync<Order>(orderId);
 
-            return order!.UserId == Guid.Parse(userId);
+            return order!.UserId == System.Guid.Parse(userId);
         }
 
         public async Task<List<CountryViewModel>> LoadCountriesAsync() => await countryService.GetCountriesAsync();

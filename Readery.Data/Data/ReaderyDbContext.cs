@@ -32,6 +32,8 @@ namespace Readery.Domain.Data
             builder.ApplyConfiguration(new AuthorConfiguration());
             builder.ApplyConfiguration(new PublisherConfiguration());
             builder.ApplyConfiguration(new BookConfiguration());
+            builder.ApplyConfiguration(new ApplicationRoleConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserRoleConfiguration());
 
             builder.Entity<IdentityUserLogin<Guid>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
             builder.Entity<IdentityUserRole<Guid>>().HasKey(r => new { r.UserId, r.RoleId });

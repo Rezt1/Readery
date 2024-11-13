@@ -10,6 +10,10 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
+                    <span class="fw-bold user-select-none" style="padding-left: 0.7em">@User.FindFirstValue(ClaimTypes.Name)</span>
+                    <hr class="mt-0 mb-1"/>
+                </li>
+                <li>
                     <a asp-area="" asp-controller="Order" asp-action="History" class="dropdown-item">Orders</a>
                 </li>
                 <li>
