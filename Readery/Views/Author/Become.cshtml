@@ -53,33 +53,33 @@
 	<hr class="d-md-none"/>
 	<div class="col-md-6">
 		<div class="mb-3">
-			<label asp-for="Street" class="form-label"></label>
+			<label asp-for="Address.Street" class="form-label"></label>
 
 			<div class="input-after">
-				<input asp-for="Street" class="form-control" placeholder="street" aria-required="true" />
+				<input asp-for="Address.Street" class="form-control" placeholder="street" aria-required="true" />
 			</div>
 			
-			<span asp-validation-for="Street" class="text-danger"></span>
+			<span asp-validation-for="Address.Street" class="text-danger"></span>
 		</div>
 
 		<div class="mb-3">
-			<label asp-for="City" class="form-label"></label>
+			<label asp-for="Address.City" class="form-label"></label>
 
 			<div class="input-after">
-				<input asp-for="City" class="form-control" placeholder="city" aria-required="true" />
+				<input asp-for="Address.City" class="form-control" placeholder="city" aria-required="true" />
 			</div>
 
-			<span asp-validation-for="City" class="text-danger"></span>
+			<span asp-validation-for="Address.City" class="text-danger"></span>
 		</div>
 
 		
 		<div class="mb-5 mb-md-0">
-			<label asp-for="CountryId" class="form-label"></label>
-			<select asp-for="CountryId" class="form-select hover-arrow">
+			<label asp-for="Address.CountryId" class="form-label"></label>
+			<select asp-for="Address.CountryId" class="form-select hover-arrow">
 				<option value="">Choose a country...</option>
-				@foreach (var country in Model.Countries)
+				@foreach (var country in Model.Address.Countries)
 				{
-					if (Model.CountryId == country.Id)
+					if (Model.Address.CountryId == country.Id)
 					{
 						<option value="@country.Id" selected>@country.Name</option>
 					}
@@ -89,7 +89,7 @@
 					}
 				}
 			</select>
-			<span asp-validation-for="CountryId" class="text-danger"></span>
+			<span asp-validation-for="Address.CountryId" class="text-danger"></span>
 		</div>
 
 	</div>

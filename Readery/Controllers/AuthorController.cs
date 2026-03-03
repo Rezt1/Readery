@@ -9,6 +9,7 @@ using Readery.Domain.Data.Models;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Readery.Core.Models.Book;
 
 namespace Readery.Controllers
 {
@@ -17,17 +18,20 @@ namespace Readery.Controllers
     {
         private readonly ICountryService countryService;
         private readonly IAuthorService authorService;
+        private readonly IPublisherService publisherService;
         private readonly SignInManager<ApplicationUser> signInManager;
 		private readonly UserManager<ApplicationUser> userManager;
 
 		public AuthorController(
             ICountryService _countryService, 
-            IAuthorService _authorService, 
+            IAuthorService _authorService,
+            IPublisherService _publisherService,
             SignInManager<ApplicationUser> _signInManager, 
             UserManager<ApplicationUser> _userManager)
 		{
 			countryService = _countryService;
 			authorService = _authorService;
+            publisherService = _publisherService;
 			signInManager = _signInManager;
 			userManager = _userManager;
 		}
@@ -47,7 +51,7 @@ namespace Readery.Controllers
 
             var model = new BecomeAuthorViewModel();
 
-            model.Countries = await countryService.GetCountriesAsync();
+            model.Address.Countries = await countryService.GetCountriesAsync();
 
             return View(model);
         }
@@ -57,7 +61,7 @@ namespace Readery.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Countries = await countryService.GetCountriesAsync();
+                model.Address.Countries = await countryService.GetCountriesAsync();
                 return View(model);
             }
 
@@ -75,9 +79,29 @@ namespace Readery.Controllers
         }
 
         [Authorize(Roles = "Author")]
-        public IActionResult AddBook()
+        [HttpGet]
+        public async Task<IActionResult> AddBook()
         {
-            return View();
+            var model = new AddBookViewModel();
+
+            model.Publisher.Address.Countries = await countryService.GetCountriesAsync();
+            model.Publishers = await publisherService.GetPublishersAsync();
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Author")]
+        [HttpPost]
+        public async Task<IActionResult> AddBook(AddBookViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+				model.Publisher.Address.Countries = await countryService.GetCountriesAsync();
+				model.Publishers = await publisherService.GetPublishersAsync();
+				return View(model);
+            }
+
+            return View(model);
         }
     }
 }

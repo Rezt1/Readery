@@ -23,12 +23,12 @@ namespace Readery.Core.Services
             var user = await repository.GetByIdAsync<ApplicationUser>(Guid.Parse(userId));
             user!.PhoneNumber = model.PhoneNumber;
 
-            var country = await repository.GetByIdAsync<Country>(model.CountryId);
+            var country = await repository.GetByIdAsync<Country>(model.Address.CountryId);
 
             var address = new Address()
             {
-                Street = model.Street,
-                City = model.City,
+                Street = model.Address.Street,
+                City = model.Address.City,
                 Country = country!
             };
 			await repository.AddAsync(address);
