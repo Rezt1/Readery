@@ -1,0 +1,36 @@
+﻿.card-hover:hover {
+    filter: brightness(93%);
+}
+
+.card-hover:active {
+    filter: brightness(90%);
+}
+
+.pagination > .page-item.active > .page-link {
+    background-color: black;
+    color: white;
+    border-color: #dee2e6;
+}
+
+.pagination > .page-item > .page-link {
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.pagination > li > a:hover {
+    color: inherit;
+}
+
+.pagination > li > a:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.pagination > li > a:active {
+    filter: brightness(95%);
+}
+
+.page-item.disabled {
+    filter: brightness(90%)
+}

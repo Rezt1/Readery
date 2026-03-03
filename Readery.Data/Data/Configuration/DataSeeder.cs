@@ -45,6 +45,8 @@ namespace Readery.Domain.Data.Configuration
 
 		internal Book Book10 { get; set; } = null!;
 
+        internal ApplicationRole AuthorRole { get; set; } = null!;
+
 		public DataSeeder()
         {
             SeedApplicationUsers();
@@ -53,19 +55,20 @@ namespace Readery.Domain.Data.Configuration
             SeedAuthor();
             SeedPublisher();
             SeedBooks();
+            SeedRoles();
         }
 
         private void SeedApplicationUsers()
         {
             CommonUser = new ApplicationUser()
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("b0c2414c-071c-436f-b5de-1023739d90be"),
                 UserName = "Common",
                 NormalizedUserName = "COMMON",
                 Email = "common1@gmail.com",
                 NormalizedEmail = "COMMON1@GMAIL.COM",
-                ConcurrencyStamp = Guid.NewGuid().ToString(),
-                SecurityStamp = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = new Guid("c932491a-2c85-4bf9-8bed-e53bcb420c5c").ToString(),
+                SecurityStamp = new Guid("89ede71f-126e-4c95-8ac0-83184c71aa3e").ToString(),
                 RememberDeliveryInfo = false
             };
 
@@ -76,8 +79,8 @@ namespace Readery.Domain.Data.Configuration
                 NormalizedUserName = "AUTHOR",
                 Email = "author1@gmail.com",
                 NormalizedEmail = "AUTHOR@GMAIL.COM",
-                ConcurrencyStamp = Guid.NewGuid().ToString(),
-                SecurityStamp = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = new Guid("0b3eaab2-7510-4832-8cf0-5d4753bf0147").ToString(),
+                SecurityStamp = new Guid("939064c0-cd3b-4c2a-a879-91398287029a").ToString(),
                 RememberDeliveryInfo = false
             };
 
@@ -325,5 +328,16 @@ namespace Readery.Domain.Data.Configuration
 				PublisherId = Publisher.Id,
 			};
 		}
+
+        private void SeedRoles()
+        {
+            AuthorRole = new ApplicationRole()
+            {
+                Id = new System.Guid("7e5291f4-1483-418d-92d2-7d35d9b6a7b0"),
+                Name = "Author",
+                NormalizedName = "AUTHOR",
+                ConcurrencyStamp = new System.Guid("c7691ed8-80d9-4669-91a8-1db59fbb249d").ToString()
+            };
+        }
     }
 }

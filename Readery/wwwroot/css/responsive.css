@@ -15,10 +15,22 @@
    .search-small-screen{
        display: flex !important;
    }
+   
+   .dropdown-menu{
+       width: 50%;
+   }
+
+    .login-dropdown-div{
+        width: auto;
+    }
 }
 
 
 @media (max-width: 767.98px) {
+    html {
+        font-size: 14px;
+    }
+
     .pd-mb-res{
         margin-bottom: 3em;
     }
@@ -38,6 +50,10 @@
 
     .pop-up {
         background-color: rgba(209, 231, 221, 1);
+    }
+
+    .login-width{
+        width: 75%;
     }
 }
 

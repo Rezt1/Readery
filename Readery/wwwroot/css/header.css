@@ -1,0 +1,110 @@
+﻿.cart-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    right: -3px;
+    z-index: 1;
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    color: white;
+    background-color: dodgerblue;
+}
+
+.cart-number:hover{
+    cursor: pointer;
+}
+
+.cart {
+    border-radius: 30%;
+    transition: background 0.2s ease-in-out
+}
+
+.cart:hover{
+    background-color: black;
+}
+
+.cart:active{
+    filter: brightness(80%)
+}
+
+.cart i{
+    transition: color 0.2s ease-in-out;
+}
+
+.cart:hover i{
+    color: white !important;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 100%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.search-btn:hover {
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-left: none;
+}
+
+.search-li-big-screen {
+    width: 40%;
+}
+
+.search-small-screen {
+    display: none !important;
+}
+
+.after-line::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000; 
+    transition: width 0.2s ease-in-out;
+}
+
+.after-line:hover::after{
+    width: 100%;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.user-btn{
+    background-color: inherit;
+    border: none;
+    border-radius: 30%;
+    transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out
+}
+
+.user-btn:hover,
+.user-btn.show {
+    background-color: black;
+    color: white;
+}
+
+.user-btn:active{
+    filter: brightness(80%)
+}
+
+.login-dropdown-div{
+    width: 200px;
+}
+
+.dropdown-item:active{
+    background-color: dodgerblue;
+}

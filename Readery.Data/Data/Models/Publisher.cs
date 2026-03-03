@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Readery.Domain.Data.Constants.PublisherConstants;
 
 namespace Readery.Domain.Data.Models
 {
@@ -8,13 +9,13 @@ namespace Readery.Domain.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(NameMaxLength)]
         public string Name { get; set; } = string.Empty;
 
-        [Required, MaxLength(100)]
+        [Required, MaxLength(EmailMaxLength)]
         public string Email { get; set; } = string.Empty;
 
-        [Required, MaxLength(20)]
+        [Required, MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]

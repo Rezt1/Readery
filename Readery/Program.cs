@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Readery.Core.Contracts;
 using Readery.Core.Services;
 using Readery.Domain.Data;
 using Readery.Domain.Data.Common;
 using Readery.Domain.Data.Models;
+using Readery.Filters;
 
 namespace Readery
 {
@@ -22,6 +24,8 @@ namespace Readery
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<ICountryService, CountryService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IAuthorService, AuthorService>();
+            builder.Services.AddScoped<IPublisherService, PublisherService>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -34,7 +38,10 @@ namespace Readery
                 //options.LogoutPath = "/Account/Logout";
             });
 
-            builder.Services.AddControllersWithViews();
+			builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new NoCacheAttribute());
+            });
             builder.Services.AddRazorPages();
 
             builder.Services.AddSession(options =>
@@ -43,7 +50,9 @@ namespace Readery
                 options.Cookie.HttpOnly = true;
             });
 
-            var app = builder.Build();
+			builder.Services.AddHttpContextAccessor();
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

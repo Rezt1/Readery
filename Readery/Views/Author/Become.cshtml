@@ -1,0 +1,104 @@
+﻿@model BecomeAuthorViewModel
+
+@{
+	ViewData["Title"] = "Apply";
+}
+
+<h1 class="text-center">Become an author</h1>
+<form asp-area="" asp-controller="Author" asp-action="Become" method="post" class="row w-75 m-auto p-5 base-border shadow">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="col-md-6">
+		<div class="mb-3">
+			<label asp-for="FirstName" class="form-label"></label>
+
+			<div class="input-after">
+				<input asp-for="FirstName" class="form-control" placeholder="first name" aria-required="true" />
+			</div>
+			
+			<span asp-validation-for="FirstName" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="LastName" class="form-label"></label>
+
+			<div class="input-after">
+				<input asp-for="LastName" class="form-control" placeholder="last name" aria-required="true" />
+			</div>
+
+			<span asp-validation-for="LastName" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="PhoneNumber" class="form-label"></label>
+
+			<div class="input-after">
+				<input asp-for="PhoneNumber" class="form-control" placeholder="phone number" aria-required="true" />
+			</div>
+
+			<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 mb-md-0">
+			<label asp-for="BirthDate" class="form-label"></label>
+
+			<div class="input-after">
+				<input asp-for="BirthDate" class="form-control" placeholder="dd/MM/yyyy" />
+			</div>
+			
+			<span asp-validation-for="BirthDate" class="text-danger"></span>
+		</div>
+
+	</div>
+	<hr class="d-md-none"/>
+	<div class="col-md-6">
+		<div class="mb-3">
+			<label asp-for="Address.Street" class="form-label"></label>
+
+			<div class="input-after">
+				<input asp-for="Address.Street" class="form-control" placeholder="street" aria-required="true" />
+			</div>
+			
+			<span asp-validation-for="Address.Street" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Address.City" class="form-label"></label>
+
+			<div class="input-after">
+				<input asp-for="Address.City" class="form-control" placeholder="city" aria-required="true" />
+			</div>
+
+			<span asp-validation-for="Address.City" class="text-danger"></span>
+		</div>
+
+		
+		<div class="mb-5 mb-md-0">
+			<label asp-for="Address.CountryId" class="form-label"></label>
+			<select asp-for="Address.CountryId" class="form-select hover-arrow">
+				<option value="">Choose a country...</option>
+				@foreach (var country in Model.Address.Countries)
+				{
+					if (Model.Address.CountryId == country.Id)
+					{
+						<option value="@country.Id" selected>@country.Name</option>
+					}
+					else
+					{
+						<option value="@country.Id">@country.Name</option>
+					}
+				}
+			</select>
+			<span asp-validation-for="Address.CountryId" class="text-danger"></span>
+		</div>
+
+	</div>
+
+	<div class="text-end">
+		<button type="submit" class="basic-btn w-res">Apply</button>
+	</div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

@@ -12,8 +12,8 @@ using Readery.Domain.Data;
 namespace Readery.Domain.Migrations
 {
     [DbContext(typeof(ReaderyDbContext))]
-    [Migration("20240910122316_ZipCodeType_Changed")]
-    partial class ZipCodeType_Changed
+    [Migration("20241112191733_Database_Created")]
+    partial class Database_Created
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,6 +98,13 @@ namespace Readery.Domain.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
+                            RoleId = new Guid("7e5291f4-1483-418d-92d2-7d35d9b6a7b0")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -197,6 +204,15 @@ namespace Readery.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("7e5291f4-1483-418d-92d2-7d35d9b6a7b0"),
+                            ConcurrencyStamp = "c7691ed8-80d9-4669-91a8-1db59fbb249d",
+                            Name = "Author",
+                            NormalizedName = "AUTHOR"
+                        });
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
@@ -241,6 +257,9 @@ namespace Readery.Domain.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("RememberDeliveryInfo")
+                        .HasColumnType("bit");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -261,17 +280,18 @@ namespace Readery.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("97d6d163-a110-4cea-be40-93a6903a604e"),
+                            Id = new Guid("b0c2414c-071c-436f-b5de-1023739d90be"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcfe0f03-6cb5-4667-8ab5-0a65a45b26c3",
+                            ConcurrencyStamp = "c932491a-2c85-4bf9-8bed-e53bcb420c5c",
                             Email = "common1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "COMMON1@GMAIL.COM",
                             NormalizedUserName = "COMMON",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKOY3QYH7yTDJp2bHwkOf9f+eHa+xvst/0Cr8QZMzJGgw/wxFg2K/JXcm2DF00acow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC6g4b9sEUbBSIqjDRCFY1iQ8pXFreGqKWmssDqHOd/ce8mHrKGtzBRNUWRSol237g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6a3e6d58-d639-449a-81d1-7ca27eaecf02",
+                            RememberDeliveryInfo = false,
+                            SecurityStamp = "89ede71f-126e-4c95-8ac0-83184c71aa3e",
                             TwoFactorEnabled = false,
                             UserName = "Common"
                         },
@@ -280,15 +300,16 @@ namespace Readery.Domain.Migrations
                             Id = new Guid("c18fa7b4-63a5-4cb2-a07c-99eaf9134fd1"),
                             AccessFailedCount = 0,
                             AuthorId = 1,
-                            ConcurrencyStamp = "d4c18e2b-0a7a-40ac-a722-49c207f459c4",
+                            ConcurrencyStamp = "0b3eaab2-7510-4832-8cf0-5d4753bf0147",
                             Email = "author1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AUTHOR@GMAIL.COM",
                             NormalizedUserName = "AUTHOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtR4FmlhUJk7FPSM3qwEskVUADxmFHJTCVr/peKXsZ46MfdzAJ0dN3+r3MVH6DQNQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM7WDFMxzAeFnkkhiEacdci44NpUKV2x9hnkpa7m1RsQTYOqp8ty20e8A1jULUmjzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c7021d4-33c7-455f-93cc-47dd5a65705b",
+                            RememberDeliveryInfo = false,
+                            SecurityStamp = "939064c0-cd3b-4c2a-a879-91398287029a",
                             TwoFactorEnabled = false,
                             UserName = "Author"
                         });
@@ -353,8 +374,8 @@ namespace Readery.Domain.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -380,8 +401,8 @@ namespace Readery.Domain.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
@@ -401,7 +422,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9042),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8502),
                             AuthorId = 1,
                             Description = "Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokouji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?",
                             ImagePath = "images/books/cote1.jpg",
@@ -416,7 +437,7 @@ namespace Readery.Domain.Migrations
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9077),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8534),
                             AuthorId = 1,
                             Description = "Having survived their final exams, Ayanokouji and the others are looking forward to an idyllic school-sponsored summer vacation aboard a cruise ship. But nothing is ever quite as it seems with the Tokyo Advanced Nurturing High School, and the cruise turns out to be the cover for a series of special tests! What grueling new challenges await them out at sea?!",
                             ImagePath = "images/books/cote3.jpg",
@@ -426,12 +447,12 @@ namespace Readery.Domain.Migrations
                             Price = 27.00m,
                             PublisherId = 1,
                             Title = "Classroom of the elite (Light Novel) Vol. 3",
-                            WrittenOn = new DateTime(2017, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            WrittenOn = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9102),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8537),
                             AuthorId = 1,
                             Description = "There’s upheaval in the air as another special exam approaches and Nagumo officially replaces Horikita Manabu as student council president. Meanwhile, Ryuuen is out for blood, and he’s set his sights on Horikita Suzune as the next possible candidate for Class D’s mysterious mastermind!",
                             ImagePath = "images/books/cote6.jpg",
@@ -441,12 +462,12 @@ namespace Readery.Domain.Migrations
                             Price = 35.00m,
                             PublisherId = 1,
                             Title = "Classroom of the elite (Light Novel) Vol. 6",
-                            WrittenOn = new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            WrittenOn = new DateTime(2021, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2024, 9, 10, 15, 23, 16, 202, DateTimeKind.Local).AddTicks(9105),
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8540),
                             AuthorId = 1,
                             Description = "The third semester kicks off in high gear with a special boot camp deep in the mountains. Forcibly separated into groups along grade and gender lines, the first, second and third years alike must work together to survive the rugged terrain. Even worse? The leader of the group that comes in last will be expelled. Can Class D make it back to campus intact, or is this where they finally say goodbye to one of their own?",
                             ImagePath = "images/books/cote8.jpg",
@@ -456,7 +477,97 @@ namespace Readery.Domain.Migrations
                             Price = 35.50m,
                             PublisherId = 1,
                             Title = "Classroom of the elite (Light Novel) Vol. 8",
-                            WrittenOn = new DateTime(2008, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            WrittenOn = new DateTime(2021, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8543),
+                            AuthorId = 1,
+                            Description = "Ayanokouji’s relationship with Karuizawa deepens, while the aftershock of his perfect mathematics score ripples through the school. Horikita asks to join the student council, and is accepted by Nagumo. And summer vacation brings with it no rest, but another special exam–a reprise of the earlier deserted island test. Except this time, it’ll be a battle royale with all three grade levels duking it out against each other!",
+                            ImagePath = "images/books/cote-y2-2.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 330,
+                            Price = 33.50m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite: Year 2 (Light Novel) Vol. 2",
+                            WrittenOn = new DateTime(2023, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8545),
+                            AuthorId = 1,
+                            Description = "The special exam on an uninhabited island has begun! For two weeks, students will do their best to visit checkpoints and complete challenges to gain points with their groups. Well, except for Ayanokouji, who has opted to tackle this exam on his own… or has he? Nanase, a first-year student from Class D, breaks off from her own group and asks to tag along with him, but there doesn’t seem to be anything in it for her. Just what is this under-classman’s goal?",
+                            ImagePath = "images/books/cote-y2-3.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 338,
+                            Price = 35.10m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite: Year 2 (Light Novel) Vol. 3",
+                            WrittenOn = new DateTime(2023, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8554),
+                            AuthorId = 1,
+                            Description = "Class D has conquered the midterms, but their celebration is cut short when three Class C students falsely accuse Sudou of assaulting them! With their friend facing expulsion, and the class’s points on the line, Ayanokouji, Horikita, and Kikyou must team up to gather evidence to prove his innocence.",
+                            ImagePath = "images/books/cote2.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 352,
+                            Price = 37.20m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite (Light Novel) Vol. 2",
+                            WrittenOn = new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8557),
+                            AuthorId = 1,
+                            Description = "School may be on vacation, but the scheming never stops! Christmas draws near, and Karuizawa and Satou compete for Ayanokouji’s affections while new student council president Nagumo makes his first sinister moves. Don’t miss this bonus volume of short stories, covering the events of a winter break that will decide the balance of power in the upcoming third semester!",
+                            ImagePath = "images/books/cote7-5.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 352,
+                            Price = 32.60m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite (Light Novel) Vol. 7.5",
+                            WrittenOn = new DateTime(2021, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8559),
+                            AuthorId = 1,
+                            Description = "Sakayanagi puts her plan to crush Ichinose into motion, spreading rumors of her alleged war criminal history through the school like wildfire. With Class B at a loss, and Ichinose herself uncharacteristically reluctant to fight back, can Ayanokouji step in to save her reputation? Meanwhile, Kushida makes contact with student council president Nagumo in what might prove to be a very dangerous alliance, indeed.",
+                            ImagePath = "images/books/cote9.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 342,
+                            Price = 33.20m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite (Light Novel) Vol. 9",
+                            WrittenOn = new DateTime(2022, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AddedOn = new DateTime(2024, 11, 12, 21, 17, 32, 356, DateTimeKind.Local).AddTicks(8573),
+                            AuthorId = 1,
+                            Description = "It's spring, and for the first time in the school’s history, no one has been expelled after the third semester exams. As a result, the Advanced Nurturing High School sets a cruel test—each class must choose one of their own members to be expelled. Chaos consumes the first-years as Hirata tries and fails to keep the class from turning on each other, Ichinose strikes a costly bargain with Nagumo, and Ryuuen’s classmates seem ready to throw him to the wolves. Can Class C make it out of this unscathed—or will they be undone by traitors within?",
+                            ImagePath = "images/books/cote10.jpg",
+                            IsRemoved = false,
+                            Language = "en",
+                            PagesCount = 383,
+                            Price = 39.20m,
+                            PublisherId = 1,
+                            Title = "Classroom of the elite (Light Novel) Vol. 10",
+                            WrittenOn = new DateTime(2022, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -500,6 +611,70 @@ namespace Readery.Domain.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Readery.Domain.Data.Models.DeliveryInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DeliveryInformation");
+                });
+
             modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -508,23 +683,21 @@ namespace Readery.Domain.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("DeliveryInformationId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PersonalDeliveryInformationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ShippingAddressId")
-                        .HasColumnType("int");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonalDeliveryInformationId");
-
-                    b.HasIndex("ShippingAddressId");
+                    b.HasIndex("DeliveryInformationId");
 
                     b.HasIndex("UserId");
 
@@ -558,50 +731,6 @@ namespace Readery.Domain.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderBooks");
-                });
-
-            modelBuilder.Entity("Readery.Domain.Data.Models.PersonalDeliveryInformation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PersonalDeliveryInformation");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Publisher", b =>
@@ -643,50 +772,6 @@ namespace Readery.Domain.Migrations
                             Name = "Seven Seas",
                             PhoneNumber = "+81 1234 5678"
                         });
-                });
-
-            modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ShippingAddresses");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Address", b =>
@@ -740,29 +825,40 @@ namespace Readery.Domain.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
+            modelBuilder.Entity("Readery.Domain.Data.Models.DeliveryInformation", b =>
                 {
-                    b.HasOne("Readery.Domain.Data.Models.PersonalDeliveryInformation", "PersonalDeliveryInformation")
-                        .WithMany("Orders")
-                        .HasForeignKey("PersonalDeliveryInformationId")
+                    b.HasOne("Readery.Domain.Data.Models.Country", "Country")
+                        .WithMany("DeliveryInformation")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Readery.Domain.Data.Models.ShippingAddress", "ShippingAddress")
+                    b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
+                        .WithMany("DeliveryInformation")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
+                {
+                    b.HasOne("Readery.Domain.Data.Models.DeliveryInformation", "DeliveryInformation")
                         .WithMany("Orders")
-                        .HasForeignKey("ShippingAddressId")
+                        .HasForeignKey("DeliveryInformationId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PersonalDeliveryInformation");
-
-                    b.Navigation("ShippingAddress");
+                    b.Navigation("DeliveryInformation");
 
                     b.Navigation("User");
                 });
@@ -786,43 +882,11 @@ namespace Readery.Domain.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Readery.Domain.Data.Models.PersonalDeliveryInformation", b =>
-                {
-                    b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
-                        .WithMany("PersonalDeliveryInformation")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
-                {
-                    b.HasOne("Readery.Domain.Data.Models.Country", "Country")
-                        .WithMany("ShippingAddresses")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Readery.Domain.Data.Models.ApplicationUser", "User")
-                        .WithMany("ShippingAddresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Readery.Domain.Data.Models.ApplicationUser", b =>
                 {
+                    b.Navigation("DeliveryInformation");
+
                     b.Navigation("Orders");
-
-                    b.Navigation("PersonalDeliveryInformation");
-
-                    b.Navigation("ShippingAddresses");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Author", b =>
@@ -845,17 +909,17 @@ namespace Readery.Domain.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("ShippingAddresses");
+                    b.Navigation("DeliveryInformation");
+                });
+
+            modelBuilder.Entity("Readery.Domain.Data.Models.DeliveryInformation", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Order", b =>
                 {
                     b.Navigation("OrderBooks");
-                });
-
-            modelBuilder.Entity("Readery.Domain.Data.Models.PersonalDeliveryInformation", b =>
-                {
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Readery.Domain.Data.Models.Publisher", b =>
@@ -864,11 +928,6 @@ namespace Readery.Domain.Migrations
                         .IsRequired();
 
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Readery.Domain.Data.Models.ShippingAddress", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

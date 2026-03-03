@@ -19,6 +19,11 @@ namespace Readery.Controllers
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
         {
+            if (signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -27,6 +32,11 @@ namespace Readery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
+            if (signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
 
             if (ModelState.IsValid)
@@ -56,6 +66,11 @@ namespace Readery.Controllers
         [HttpGet]
         public IActionResult Register(string? returnUrl = null)
         {
+            if (signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
 
             var registerViewModel = new RegisterViewModel();
@@ -67,6 +82,11 @@ namespace Readery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
         {
+            if (signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {

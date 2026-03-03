@@ -1,0 +1,243 @@
+﻿@model AddBookViewModel
+
+@{
+	ViewData["Title"] = "Add a book";
+}
+
+
+<h1 class="text-center mb-4">Add a book</h1>
+
+
+<form asp-controller="Author" asp-action="AddBook" enctype="multipart/form-data" method="post" class="base-border shadow mx-auto p-5 w-50 w-res">
+
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1">Title:</label>
+
+		<div class="col-md-9">
+			<div class="input-after">
+				<input asp-for="Title" class="form-control" placeholder="title..." aria-required="true" />
+			</div>
+
+			<span asp-validation-for="Title" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1 text-break">Description:</label>
+
+		<div class="col-md-9">
+			<div class="input-after">
+				<textarea asp-for="Description" class="form-control" placeholder="description..." aria-required="true"></textarea>
+			</div>
+
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1">Pages:</label>
+
+		<div class="col-md-4">
+			<div class="">
+				<input asp-for="PagesCount" class="form-control" placeholder="title..." aria-required="true" />
+			</div>
+
+			<span asp-validation-for="PagesCount" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1 text-break">Language:</label>
+
+		<div class="col-md-6">
+			<div class="input-after">
+				<input asp-for="Language" class="form-control" placeholder="language..." aria-required="true" />
+			</div>
+
+			<span asp-validation-for="Language" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1">Price:</label>
+
+		<div class="col-md-4">
+			<div class="input-after">
+				<input asp-for="Price" class="form-control" placeholder="price..." aria-required="true" />
+			</div>
+
+			<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1">Creation date:</label>
+
+		<div class="col-md-7">
+			<div class="input-after">
+				<input asp-for="WrittenOn" class="form-control" placeholder="dd/MM/yyyy" aria-required="true" />
+			</div>
+
+			<span asp-validation-for="WrittenOn" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+
+		<label class="form-label col-md-3 pt-md-1">Image:</label>
+
+		<div class="col-md-9">
+			<input asp-for="Image" name="Image" class="form-control" aria-required="true" />
+			<span asp-validation-for="Image" class="text-danger"></span>
+		</div>
+	</div>
+
+	<hr />
+
+	<div class="form-check mb-3" style="bottom: -3em; right: 0">
+		<input asp-for="NeedNewPublisher" class="form-check-input hover-arrow" id="publisher-check">
+		<label class="form-check-label" for="dropdownCheck">
+			New publisher
+		</label>
+	</div>
+
+	<div class="mb-3" id="select-publisher">
+		<select asp-for="PublisherId" class="form-select hover-arrow">
+			<option value="">Choose a publisher...</option>
+			@foreach (var publisher in Model.Publishers)
+			{
+				if (Model.PublisherId == publisher.Id)
+				{
+					<option value="@publisher.Id" selected>@publisher.Name -- @publisher.Email -- @publisher.PhoneNumber</option>
+				}
+				else
+				{
+					<option value="@publisher.Id">@publisher.Name -- @publisher.Email -- @publisher.PhoneNumber</option>
+				}
+			}
+		</select>
+		<span asp-validation-for="PublisherId" class="text-danger"></span>
+	</div>
+
+	<div class="base-border p-4 d-none" id="publisher-info">
+		<div class="row mb-3">
+
+			<label class="form-label col-md-3 pt-md-1">Name:</label>
+
+			<div class="col-md-9">
+				<div class="input-after">
+					<input asp-for="Publisher.Name" class="form-control" placeholder="name..." aria-required="true" />
+				</div>
+
+				<span asp-validation-for="Publisher.Name" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+
+			<label class="form-label col-md-3 pt-md-1">Email:</label>
+
+			<div class="col-md-9">
+				<div class="input-after">
+					<input asp-for="Publisher.Email" class="form-control" placeholder="email..." aria-required="true" />
+				</div>
+
+				<span asp-validation-for="Publisher.Email" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+
+			<label class="form-label col-md-3 pt-md-1">Phone number:</label>
+
+			<div class="col-md-7">
+				<div class="input-after">
+					<input asp-for="Publisher.PhoneNumber" class="form-control" placeholder="phone number..." aria-required="true" />
+				</div>
+
+				<span asp-validation-for="Publisher.PhoneNumber" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+
+			<label class="form-label col-md-3 pt-md-1">Street:</label>
+
+			<div class="col-md-9">
+				<div class="input-after">
+					<input asp-for="Publisher.Address.Street" class="form-control" placeholder="street..." aria-required="true" />
+				</div>
+
+				<span asp-validation-for="Publisher.Address.Street" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+
+			<label class="form-label col-md-3 pt-md-1">City:</label>
+
+			<div class="col-md-6">
+				<div class="input-after">
+					<input asp-for="Publisher.Address.City" class="form-control" placeholder="city..." aria-required="true" />
+				</div>
+
+				<span asp-validation-for="Publisher.Address.City" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<label class="col-md-3 col-form-label col-form-label-sm">Country:</label>
+			<div class="col-md-8">
+				<select asp-for="Publisher.Address.CountryId" class="form-select hover-arrow">
+					<option value="">Choose a country...</option>
+					@foreach (var country in Model.Publisher.Address.Countries)
+					{
+						if (Model.Publisher.Address.CountryId == country.Id)
+						{
+							<option value="@country.Id" selected>@country.Name</option>
+						}
+						else
+						{
+							<option value="@country.Id">@country.Name</option>
+						}
+					}
+				</select>
+				<span asp-validation-for="Publisher.Address.CountryId" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="text-end mt-4">
+		<button class="basic-btn">Add</button>
+	</div>
+</form>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			const radioEl = $("#publisher-check");
+
+			radioEl.change(function () {
+				if (radioEl.prop("checked")) {
+					$("#select-publisher").addClass("d-none");
+					$("#publisher-info").removeClass("d-none");
+				} else {
+					$("#publisher-info").addClass("d-none");
+					$("#select-publisher").removeClass("d-none");
+				}
+			})
+		})
+
+		
+	</script>
+
+	<partial name="_ValidationScriptsPartial" />
+}

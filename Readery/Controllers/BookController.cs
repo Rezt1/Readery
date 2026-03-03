@@ -15,6 +15,13 @@ namespace Readery.Controllers
         [HttpGet]
         public async Task<IActionResult> All(int page = 1, string searchTerm = "")
         {
+            searchTerm ??= "";
+
+            if (searchTerm.Length > 100)
+            {
+                searchTerm = searchTerm[..100];
+            }
+
             var paginationModel = await bookService.GetAllBooksAsync(page, searchTerm);
 
             if (paginationModel.TotalPages != 0 && !paginationModel.PageExists)
@@ -22,7 +29,7 @@ namespace Readery.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            ViewData["PageTitle"] = "Latest added books";
+            ViewData["PageTitle"] = searchTerm == "" ? "Latest added books" : $"Found results for \"{searchTerm}\"";
 
             return View(paginationModel);
         }

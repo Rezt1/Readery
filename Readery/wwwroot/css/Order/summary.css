@@ -1,0 +1,8 @@
+﻿.pop-up-second {
+    position: fixed;
+    right: 1%;
+    bottom: 3%;
+    background-color: rgba(209, 231, 221, 1);
+    z-index: 1000;
+    transition: opacity 0.15s ease-in
+}
